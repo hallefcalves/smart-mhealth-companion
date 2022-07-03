@@ -1,7 +1,49 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:smart_mhealth_companion/screens/alarm.dart';
+import 'package:smart_mhealth_companion/screens/config_alarme.dart';
 
-void main() {
-  runApp(const MyApp());
+final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
+    FlutterLocalNotificationsPlugin();
+
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  var initializationSettinsAndroid =
+    AndroidInitializationSettings('logo_verde');
+  var initializationSettings = InitializationSettings(android: initializationSettinsAndroid);
+  await flutterLocalNotificationsPlugin.initialize(initializationSettings,
+      onSelectNotification: (String? payload) async {
+        if(payload!=null){
+          //Navigator.pushNamed(context, '/alarm');
+          Destino.pagina = alarm();
+          runApp(MaterialApp( //errado, acho
+              home: MyApp(),
+              //routes: routes
+          ));
+
+          debugPrint('notification payload: ' + payload);
+        }
+      });
+
+  if(Destino.pagina is! alarm){
+    Destino.pagina = alarm_config();
+  }
+
+  runApp(MaterialApp(
+    home: MyApp(), // becomes the route named '/'
+    //routes: routes
+  ));
+
+  //runApp(const MyApp());
+}
+
+var routes = {
+  '/alarm': (BuildContext context) => alarm(),
+  '/config_alarme': (BuildContext context) => alarm_config()
+};
+
+class Destino {
+  static StatelessWidget? pagina;
 }
 
 class MyApp extends StatelessWidget {
@@ -11,7 +53,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Medicine',
       theme: ThemeData(
         // This is the theme of your application.
         //
@@ -24,11 +66,11 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: Destino.pagina,
     );
   }
 }
-
+/*
 class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key, required this.title}) : super(key: key);
 
@@ -113,3 +155,4 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 }
+*/
