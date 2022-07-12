@@ -1,7 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:iconify_flutter/iconify_flutter.dart';
+import 'package:iconify_flutter/icons/fa.dart';
+import 'package:iconify_flutter/icons/bi.dart';
+import 'package:iconify_flutter/icons/uil.dart';
+import 'package:iconify_flutter/icons/fluent.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:smart_mhealth_companion/screens/alarm.dart';
 import 'package:smart_mhealth_companion/screens/config_alarme.dart';
+import 'package:smart_mhealth_companion/screens/green_home.dart';
 
 final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
     FlutterLocalNotificationsPlugin();
@@ -9,28 +15,30 @@ final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   var initializationSettinsAndroid =
-    AndroidInitializationSettings('logo_verde');
-  var initializationSettings = InitializationSettings(android: initializationSettinsAndroid);
+      AndroidInitializationSettings('logo_verde');
+  var initializationSettings =
+      InitializationSettings(android: initializationSettinsAndroid);
   await flutterLocalNotificationsPlugin.initialize(initializationSettings,
       onSelectNotification: (String? payload) async {
-        if(payload!=null){
-          //Navigator.pushNamed(context, '/alarm');
-          Destino.pagina = alarm();
-          runApp(MaterialApp( //errado, acho
-              home: MyApp(),
-              //routes: routes
-          ));
+    if (payload != null) {
+      //Navigator.pushNamed(context, '/alarm');
+      Destino.pagina = GreenHome();
+      runApp(MaterialApp(
+        //errado, acho
+        home: MyStatefulWidget(),
+        //routes: routes
+      ));
 
-          debugPrint('notification payload: ' + payload);
-        }
-      });
+      debugPrint('notification payload: ' + payload);
+    }
+  });
 
-  if(Destino.pagina is! alarm){
+/*   if(Destino.pagina is! alarm){
     Destino.pagina = alarm_config();
   }
-
+ */
   runApp(MaterialApp(
-    home: MyApp(), // becomes the route named '/'
+    home: MyStatefulWidget(), // becomes the route named '/'
     //routes: routes
   ));
 
@@ -66,7 +74,81 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: Destino.pagina,
+      home: MyStatefulWidget(),
+    );
+  }
+}
+
+class MyStatefulWidget extends StatefulWidget {
+  const MyStatefulWidget({Key? key}) : super(key: key);
+
+  @override
+  State<MyStatefulWidget> createState() => _MyStatefulWidgetState();
+}
+
+class _MyStatefulWidgetState extends State<MyStatefulWidget> {
+  int _selectedIndex = 1;
+  static const TextStyle optionStyle =
+      TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
+  static const List<Widget> _widgetOptions = <Widget>[
+    Text(
+      'Index 0: Cuidador',
+      style: optionStyle,
+    ),
+    Text(
+      'Index 1: Menu',
+      style: optionStyle,
+    ),
+    Text(
+      'Index 2: Remédios',
+      style: optionStyle,
+    ),
+    Text(
+      'Index 3: Tutorial',
+      style: optionStyle,
+    ),
+  ];
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Center(
+        child: _widgetOptions.elementAt(_selectedIndex),
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: Iconify(Bi.person_badge_fill, color: Color.fromARGB(255, 169, 143, 255), size: 70),
+            label: 'Cuidador',
+            backgroundColor: Color.fromARGB(255, 232, 225, 255),
+          ),
+          BottomNavigationBarItem(
+            icon: Iconify(Fa.home, color: Color.fromARGB(255, 130, 197, 187), size: 70),
+            label: 'Menu',
+            backgroundColor: Color.fromARGB(255, 185, 223, 217),
+          ),
+          BottomNavigationBarItem(
+            icon: Iconify(Fluent.pill_24_filled, color: Color.fromARGB(255, 95, 190, 229), size: 75),
+            label: 'Remédios',
+            backgroundColor: Color.fromARGB(255, 207, 235, 246),
+          ),
+           BottomNavigationBarItem(
+            icon: Iconify(Uil.video_question, color: Color.fromARGB(255, 243, 166, 77), size: 80),
+            label: 'Tutorial',
+            backgroundColor: Color.fromARGB(255, 255, 221, 157),
+          ),
+        ],
+        
+        currentIndex: _selectedIndex,
+        selectedItemColor: Color.fromARGB(255, 130, 197, 187),
+        onTap: _onItemTapped,
+      ),
     );
   }
 }
