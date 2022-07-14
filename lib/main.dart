@@ -5,6 +5,7 @@ import 'package:iconify_flutter/icons/bi.dart';
 import 'package:iconify_flutter/icons/uil.dart';
 import 'package:iconify_flutter/icons/fluent.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:smart_mhealth_companion/components/bottom_navbar.dart';
 import 'package:smart_mhealth_companion/screens/alarm.dart';
 import 'package:smart_mhealth_companion/screens/config_alarme.dart';
 import 'package:smart_mhealth_companion/screens/green_home.dart';
@@ -15,7 +16,7 @@ final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   var initializationSettinsAndroid =
-      AndroidInitializationSettings('logo_verde');
+      const AndroidInitializationSettings('logo_verde');
   var initializationSettings =
       InitializationSettings(android: initializationSettinsAndroid);
   await flutterLocalNotificationsPlugin.initialize(initializationSettings,
@@ -23,13 +24,13 @@ Future<void> main() async {
     if (payload != null) {
       //Navigator.pushNamed(context, '/alarm');
       Destino.pagina = GreenHome();
-      runApp(MaterialApp(
+      runApp(const MaterialApp(
         //errado, acho
-        home: MyStatefulWidget(),
+        home: BottomNavBar(),
         //routes: routes
       ));
 
-      debugPrint('notification payload: ' + payload);
+      debugPrint('notification payload: $payload');
     }
   });
 
@@ -37,8 +38,8 @@ Future<void> main() async {
     Destino.pagina = alarm_config();
   }
  */
-  runApp(MaterialApp(
-    home: MyStatefulWidget(), // becomes the route named '/'
+  runApp(const MaterialApp(
+    home: BottomNavBar(), // becomes the route named '/'
     //routes: routes
   ));
 
@@ -47,7 +48,8 @@ Future<void> main() async {
 
 var routes = {
   '/alarm': (BuildContext context) => alarm(),
-  '/config_alarme': (BuildContext context) => alarm_config()
+  '/config_alarme': (BuildContext context) => alarm_config(),
+  '/green_home': (BuildContext context) => GreenHome(),
 };
 
 class Destino {
@@ -72,86 +74,14 @@ class MyApp extends StatelessWidget {
         // or simply save your changes to "hot reload" in a Flutter IDE).
         // Notice that the counter didn't reset back to zero; the application
         // is not restarted.
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.green,
       ),
-      home: MyStatefulWidget(),
+      home: const BottomNavBar(),
     );
   }
 }
 
-class MyStatefulWidget extends StatefulWidget {
-  const MyStatefulWidget({Key? key}) : super(key: key);
 
-  @override
-  State<MyStatefulWidget> createState() => _MyStatefulWidgetState();
-}
-
-class _MyStatefulWidgetState extends State<MyStatefulWidget> {
-  int _selectedIndex = 1;
-  static const TextStyle optionStyle =
-      TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
-  static const List<Widget> _widgetOptions = <Widget>[
-    Text(
-      'Index 0: Cuidador',
-      style: optionStyle,
-    ),
-    Text(
-      'Index 1: Menu',
-      style: optionStyle,
-    ),
-    Text(
-      'Index 2: Remédios',
-      style: optionStyle,
-    ),
-    Text(
-      'Index 3: Tutorial',
-      style: optionStyle,
-    ),
-  ];
-
-  void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: _widgetOptions.elementAt(_selectedIndex),
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Iconify(Bi.person_badge_fill, color: Color.fromARGB(255, 169, 143, 255), size: 70),
-            label: 'Cuidador',
-            backgroundColor: Color.fromARGB(255, 232, 225, 255),
-          ),
-          BottomNavigationBarItem(
-            icon: Iconify(Fa.home, color: Color.fromARGB(255, 130, 197, 187), size: 70),
-            label: 'Menu',
-            backgroundColor: Color.fromARGB(255, 185, 223, 217),
-          ),
-          BottomNavigationBarItem(
-            icon: Iconify(Fluent.pill_24_filled, color: Color.fromARGB(255, 95, 190, 229), size: 75),
-            label: 'Remédios',
-            backgroundColor: Color.fromARGB(255, 207, 235, 246),
-          ),
-           BottomNavigationBarItem(
-            icon: Iconify(Uil.video_question, color: Color.fromARGB(255, 243, 166, 77), size: 80),
-            label: 'Tutorial',
-            backgroundColor: Color.fromARGB(255, 255, 221, 157),
-          ),
-        ],
-        
-        currentIndex: _selectedIndex,
-        selectedItemColor: Color.fromARGB(255, 130, 197, 187),
-        onTap: _onItemTapped,
-      ),
-    );
-  }
-}
 /*
 class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key, required this.title}) : super(key: key);

@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_alarm_clock/flutter_alarm_clock.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:smart_mhealth_companion/components/bottom_navbar.dart';
 import 'package:smart_mhealth_companion/main.dart';
 import 'package:smart_mhealth_companion/themes/color.dart';
 import 'package:timezone/data/latest_all.dart' as tz;
@@ -72,6 +73,7 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
             )
           ])),
+          bottomNavigationBar: BottomNavBar(),
     );
   }
 

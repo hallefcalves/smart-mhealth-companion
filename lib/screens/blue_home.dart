@@ -5,8 +5,8 @@ import 'package:smart_mhealth_companion/components/bottom_navbar.dart';
 
 import '../components/button.dart';
 
-class GreenHome extends StatelessWidget {
-  const GreenHome({Key? key}) : super(key: key);
+class BlueHome extends StatelessWidget {
+  const BlueHome({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -15,9 +15,7 @@ class GreenHome extends StatelessWidget {
       body: Column(
         children: [
           const BottomAppBar(),
-          CustomBtn("Sim"),
-          const BottomAppBar(),
-          CustomBtn("Não"),
+          CustomBtn("remédio"),
         ],
       ),
       bottomNavigationBar: BottomNavBar(),
