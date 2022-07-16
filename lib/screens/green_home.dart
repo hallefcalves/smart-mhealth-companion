@@ -17,7 +17,7 @@ class GreenHome extends StatelessWidget {
           CustomBtn(
             "Verde",
              MyTheme.defaultTheme.primaryColor,
-             "/placeholder"
+             PlaceholderWidget(),           
         )
       )
     );

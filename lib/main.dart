@@ -10,6 +10,7 @@ import 'package:smart_mhealth_companion/screens/alarm.dart';
 import 'package:smart_mhealth_companion/screens/config_alarme.dart';
 import 'package:smart_mhealth_companion/screens/green_home.dart';
 import 'package:smart_mhealth_companion/screens/green_intro.dart';
+import 'package:smart_mhealth_companion/screens/placeholder.dart';
 
 final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
     FlutterLocalNotificationsPlugin();
@@ -51,6 +52,7 @@ var routes = {
   '/alarm': (BuildContext context) => alarm(),
   '/config_alarme': (BuildContext context) => alarm_config(),
   '/green_home': (BuildContext context) => GreenHome(),
+  '/placeholder': (BuildContext context) => PlaceholderWidget(),
 };
 
 class Destino {

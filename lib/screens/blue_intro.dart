@@ -11,6 +11,7 @@ import 'package:iconify_flutter/icons/fa.dart';
 import 'package:iconify_flutter/icons/fluent.dart';
 import 'package:smart_mhealth_companion/components/button.dart';
 import 'package:smart_mhealth_companion/components/center_text.dart';
+import 'package:smart_mhealth_companion/screens/green_home.dart';
 import 'package:smart_mhealth_companion/screens/placeholder.dart';
 import 'package:smart_mhealth_companion/themes/color.dart';
 
@@ -43,7 +44,7 @@ class BlueIntro extends StatelessWidget {
             child: CustomBtn(
               "Pronto",
                MyTheme.defaultTheme.primaryColor,
-              "green_home",
+              GreenHome(),
               )
           ),
         ],

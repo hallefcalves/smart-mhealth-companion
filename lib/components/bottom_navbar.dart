@@ -26,7 +26,8 @@ class _BottomNavBarState extends State<BottomNavBar> {
   final List<Widget> _telas = [
     PurpleHome(),
     GreenHome(),
-    BlueHome()
+    BlueHome(),
+    PlaceholderWidget()
   ];
   int _indiceAtual = 1;
 

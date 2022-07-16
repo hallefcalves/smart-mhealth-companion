@@ -17,7 +17,7 @@ class PurpleHome extends StatelessWidget {
           CustomBtn(
             "Roxo",
              MyTheme.defaultTheme.primaryColor,
-             "/placeholder"
+             PlaceholderWidget(),           
         )
       )
     );

@@ -17,7 +17,7 @@ class BlueHome extends StatelessWidget {
           CustomBtn(
             "Azul",
              MyTheme.defaultTheme.primaryColor,
-            "/placeholder"            
+            PlaceholderWidget(),           
         )
       )
     );

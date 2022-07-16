@@ -44,7 +44,7 @@ class PurpleIntro extends StatelessWidget {
             child: CustomBtn(
               "Próximo",
                MyTheme.defaultTheme.primaryColor,
-               "/blue_intro"
+               BlueIntro(),
               )
           ),
         ],
