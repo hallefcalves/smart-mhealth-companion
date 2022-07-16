@@ -11,9 +11,9 @@ import 'package:smart_mhealth_companion/screens/alarm.dart';
 import 'package:smart_mhealth_companion/screens/blue_home.dart';
 import 'package:smart_mhealth_companion/screens/config_alarme.dart';
 import 'package:smart_mhealth_companion/screens/green_home.dart';
+import 'package:smart_mhealth_companion/screens/green_intro.dart';
 import 'package:smart_mhealth_companion/screens/purple_home.dart';
 import 'package:smart_mhealth_companion/screens/placeholder.dart';
-
 
 class BottomNavBar extends StatefulWidget {
   const BottomNavBar({Key? key}) : super(key: key);
@@ -23,23 +23,17 @@ class BottomNavBar extends StatefulWidget {
 }
 
 class _BottomNavBarState extends State<BottomNavBar> {
-//  final List<Widget> _telas = [alarm_config(), GreenHome(), alarm()];
-  final List<Widget> _telas = [];
+  final List<Widget> _telas = [
+    PurpleHome(),
+    GreenHome(),
+    BlueHome()
+  ];
   int _indiceAtual = 1;
-  
-  @override
-  void initState() {
-    _telas.add(PlaceholderWidget(Colors.purple, "Socorro"));
-    _telas.add(PlaceholderWidget(Colors.green, "O problema era uma palavra"));
-    _telas.add(PlaceholderWidget(Colors.blue, "Uma única palavra"));
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
-      body: _telas[_indiceAtual], 
+      body: _telas[_indiceAtual],
       bottomNavigationBar: BottomNavigationBar(
         items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
@@ -61,17 +55,19 @@ class _BottomNavBarState extends State<BottomNavBar> {
             backgroundColor: Color.fromARGB(255, 207, 235, 246),
           ),
         ],
+        type: BottomNavigationBarType.shifting,
+          showSelectedLabels: false,
+        showUnselectedLabels: false,
         currentIndex: _indiceAtual,
-        selectedItemColor: Colors.amber[800],
         onTap: onTabTapped,
       ),
     );
   }
 
-    void onTabTapped(int index) {
+
+  void onTabTapped(int index) {
     setState(() {
       _indiceAtual = index;
     });
   }
-
 }

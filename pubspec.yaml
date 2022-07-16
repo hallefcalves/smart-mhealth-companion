@@ -37,6 +37,7 @@ dependencies:
   font_awesome_flutter: any
   google_fonts: any
   iconify_flutter: ^0.0.4
+  is_first_run: ^1.0.0
 
 dev_dependencies:
   flutter_test:

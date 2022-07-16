@@ -9,6 +9,7 @@ import 'package:smart_mhealth_companion/components/bottom_navbar.dart';
 import 'package:smart_mhealth_companion/screens/alarm.dart';
 import 'package:smart_mhealth_companion/screens/config_alarme.dart';
 import 'package:smart_mhealth_companion/screens/green_home.dart';
+import 'package:smart_mhealth_companion/screens/green_intro.dart';
 
 final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
     FlutterLocalNotificationsPlugin();
@@ -23,7 +24,7 @@ Future<void> main() async {
       onSelectNotification: (String? payload) async {
     if (payload != null) {
       //Navigator.pushNamed(context, '/alarm');
-      Destino.pagina = GreenHome();
+      Destino.pagina = GreenIntro();
       runApp(const MaterialApp(
         //errado, acho
         home: BottomNavBar(),

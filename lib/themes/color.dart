@@ -24,7 +24,7 @@ class MyTheme {
       primaryColor: primaryColor,
 
       buttonTheme: base.buttonTheme.copyWith(
-        buttonColor: secondaryColor,
+        buttonColor: primaryColor,
         textTheme: ButtonTextTheme.primary,
       ),
 
