@@ -11,7 +11,7 @@ class PlaceholderWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        color: Colors.amber,
-        );
+      color: Colors.amber,
+    );
   }
 }

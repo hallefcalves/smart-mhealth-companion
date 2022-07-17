@@ -38,6 +38,7 @@ dependencies:
   google_fonts: any
   iconify_flutter: ^0.0.4
   is_first_run: ^1.0.0
+  persistent_bottom_nav_bar: ^4.0.2
 
 dev_dependencies:
   flutter_test:

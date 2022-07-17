@@ -22,6 +22,8 @@ class BottomNavBar extends StatefulWidget {
   State<BottomNavBar> createState() => _BottomNavBarState();
 }
 
+int _indiceAtual = 1;
+
 class _BottomNavBarState extends State<BottomNavBar> {
   final List<Widget> _telas = [
     PurpleHome(),
@@ -29,13 +31,34 @@ class _BottomNavBarState extends State<BottomNavBar> {
     BlueHome(),
     PlaceholderWidget()
   ];
-  int _indiceAtual = 1;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: _telas[_indiceAtual],
+      body: IndexedStack(
+        index: _indiceAtual,
+        children: <Widget>[
+          Navigator(onGenerateRoute: (settings) {
+            Widget page = PurpleHome();
+            return MaterialPageRoute(builder: (context) => page);
+          }),
+          Navigator(onGenerateRoute: (settings) {
+            Widget page = GreenHome();
+            return MaterialPageRoute(builder: (context) => page);
+          }),
+          Navigator(onGenerateRoute: (settings) {
+            Widget page = BlueHome();
+            return MaterialPageRoute(builder: (context) => page);
+          }),
+        ],
+      ),
+
       bottomNavigationBar: BottomNavigationBar(
+        type: BottomNavigationBarType.shifting,
+        showSelectedLabels: false,
+        showUnselectedLabels: false,
+        currentIndex: _indiceAtual,
+        onTap: onTabTapped,
         items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Iconify(Bi.person_badge_fill,
@@ -56,15 +79,9 @@ class _BottomNavBarState extends State<BottomNavBar> {
             backgroundColor: Color.fromARGB(255, 207, 235, 246),
           ),
         ],
-        type: BottomNavigationBarType.shifting,
-          showSelectedLabels: false,
-        showUnselectedLabels: false,
-        currentIndex: _indiceAtual,
-        onTap: onTabTapped,
       ),
     );
   }
-
 
   void onTabTapped(int index) {
     setState(() {
