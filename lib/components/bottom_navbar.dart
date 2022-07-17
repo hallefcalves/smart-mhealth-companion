@@ -14,6 +14,7 @@ import 'package:smart_mhealth_companion/screens/green_home.dart';
 import 'package:smart_mhealth_companion/screens/green_intro.dart';
 import 'package:smart_mhealth_companion/screens/purple_home.dart';
 import 'package:smart_mhealth_companion/screens/placeholder.dart';
+import 'package:smart_mhealth_companion/themes/color.dart';
 
 class BottomNavBar extends StatefulWidget {
   const BottomNavBar({Key? key}) : super(key: key);
@@ -53,6 +54,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
         ],
       ),
 
+
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.shifting,
         showSelectedLabels: false,
@@ -62,21 +64,21 @@ class _BottomNavBarState extends State<BottomNavBar> {
         items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Iconify(Bi.person_badge_fill,
-                color: Color.fromARGB(255, 169, 143, 255), size: 70),
+                color: accentColorMedium, size: 70),
             label: 'Cuidador',
-            backgroundColor: Color.fromARGB(255, 232, 225, 255),
+            backgroundColor: accentColor,
           ),
           BottomNavigationBarItem(
             icon: Iconify(Fa.home,
-                color: Color.fromARGB(255, 130, 197, 187), size: 70),
+                color: primaryColor, size: 70),
             label: 'Menu',
-            backgroundColor: Color.fromARGB(255, 185, 223, 217),
+            backgroundColor: primaryColorLight,
           ),
           BottomNavigationBarItem(
             icon: Iconify(Fluent.pill_24_filled,
-                color: Color.fromARGB(255, 95, 190, 229), size: 75),
+                color: secondaryColor, size: 75),
             label: 'Remédios',
-            backgroundColor: Color.fromARGB(255, 207, 235, 246),
+            backgroundColor: secondaryColorLight,
           ),
         ],
       ),
