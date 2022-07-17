@@ -21,9 +21,10 @@ class BlueIntro extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: const Color.fromARGB(255, 207, 235, 246),
-      child: ListView(
+    return Scaffold(
+      backgroundColor: const Color.fromARGB(255, 207, 235, 246),
+      body: Center(
+        child: ListView(
         children: [
           const Padding(
               padding: EdgeInsets.only(top: 35, left: 13, right: 13),
@@ -48,6 +49,7 @@ class BlueIntro extends StatelessWidget {
               )
           ),
         ],
+      ),
       ),
     );
   }

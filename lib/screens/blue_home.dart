@@ -12,12 +12,14 @@ class BlueHome extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-        child: (
+    return Scaffold(
+        body: Center(
+          child: (
           CustomBtn(
             "Azul",
              MyTheme.defaultTheme.primaryColor,
-            PlaceholderWidget(),           
+             PlaceholderWidget(),           
+        )
         )
       )
     );

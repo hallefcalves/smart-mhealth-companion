@@ -12,12 +12,14 @@ class PurpleHome extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-        child: (
+    return Scaffold(
+        body: Center(
+          child: (
           CustomBtn(
             "Roxo",
              MyTheme.defaultTheme.primaryColor,
              PlaceholderWidget(),           
+        )
         )
       )
     );

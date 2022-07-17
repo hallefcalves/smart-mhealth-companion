@@ -12,12 +12,14 @@ class GreenHome extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-        child: (
+    return Scaffold(
+        body: Center(
+          child: (
           CustomBtn(
             "Verde",
              MyTheme.defaultTheme.primaryColor,
              PlaceholderWidget(),           
+        )
         )
       )
     );

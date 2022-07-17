@@ -21,9 +21,10 @@ class PurpleIntro extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: const Color.fromARGB(255, 204, 189, 255),
-      child: ListView(
+    return Scaffold(
+      backgroundColor: Color.fromARGB(255, 204, 189, 255),
+      body: Center(
+         child: ListView(
         children: [
           const Padding(
               padding: EdgeInsets.only(top: 35, left: 13, right: 13),
@@ -49,6 +50,7 @@ class PurpleIntro extends StatelessWidget {
           ),
         ],
       ),
+      )
     );
   }
 }
