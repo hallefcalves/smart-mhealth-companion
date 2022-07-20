@@ -57,7 +57,7 @@ class GreenHome extends StatelessWidget {
                 ),
               ),
             Padding(
-                padding: EdgeInsets.only(top: 40, left: 26, right: 15),
+                padding: EdgeInsets.only(top: 22, left: 26, right: 15),
                 child: CustomNotification(
                   errorSurface,
                   errorDefault,

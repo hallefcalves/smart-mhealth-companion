@@ -6,8 +6,9 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class CenterTxt extends StatelessWidget {
-  const CenterTxt(this.tamanhoFont, this.texto);
+  const CenterTxt(this.tamanhoFont, this.fontWeight, this.texto);
   final double tamanhoFont;
+  final FontWeight fontWeight;
   final String texto;
 
   @override
@@ -18,7 +19,7 @@ class CenterTxt extends StatelessWidget {
         textAlign: TextAlign.center,
         style: GoogleFonts.inter(
           fontSize: tamanhoFont,
-          fontWeight: FontWeight.w700,
+          fontWeight: fontWeight,
         ),
         texto,
       ),

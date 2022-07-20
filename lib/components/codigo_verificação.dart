@@ -1,7 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class CodigoVerificacao extends StatelessWidget {
   const CodigoVerificacao({Key? key}) : super(key: key);
@@ -19,8 +21,20 @@ class CodigoVerificacao extends StatelessWidget {
             color: Colors.white,
             borderRadius: BorderRadius.circular(6),   
             ),
-            child: const TextField(
-              keyboardType: TextInputType.number),
+            child: Center(child: 
+            TextField(
+              decoration: 
+                InputDecoration(counterText: "", hintText: '0', hintStyle: TextStyle(fontSize: 40, color: Color.fromARGB(155, 161, 161, 161)),  border: InputBorder.none),
+              textAlign: TextAlign.center,
+              style: GoogleFonts.inter(
+              fontSize: 40,
+              fontWeight: FontWeight.w700,
+            ),
+              maxLength: 1,
+              inputFormatters: <TextInputFormatter>[FilteringTextInputFormatter.digitsOnly,],
+              keyboardType: TextInputType.number,
+            ),
+            )
           ),
         ),
         Padding(
@@ -32,8 +46,20 @@ class CodigoVerificacao extends StatelessWidget {
             color: Colors.white,
             borderRadius: BorderRadius.circular(6),   
             ),
-            child: const TextField(
-              keyboardType: TextInputType.number),
+            child: Center(child: 
+            TextField(
+              decoration: 
+                InputDecoration(counterText: "", hintText: '0', hintStyle: TextStyle(fontSize: 40, color: Color.fromARGB(155, 161, 161, 161)),  border: InputBorder.none),
+              textAlign: TextAlign.center,
+              style: GoogleFonts.inter(
+              fontSize: 40,
+              fontWeight: FontWeight.w700,
+            ),
+              maxLength: 1,
+              inputFormatters: <TextInputFormatter>[FilteringTextInputFormatter.digitsOnly,],
+              keyboardType: TextInputType.number,
+            ),
+            )
           ),
         ),
         Padding(
@@ -45,8 +71,20 @@ class CodigoVerificacao extends StatelessWidget {
             color: Colors.white,
             borderRadius: BorderRadius.circular(6),   
             ),
-            child: const TextField(
-              keyboardType: TextInputType.number),
+            child: Center(child: 
+            TextField(
+              decoration: 
+                InputDecoration(counterText: "", hintText: '0', hintStyle: TextStyle(fontSize: 40, color: Color.fromARGB(155, 161, 161, 161)),  border: InputBorder.none),
+              textAlign: TextAlign.center,
+              style: GoogleFonts.inter(
+              fontSize: 40,
+              fontWeight: FontWeight.w700,
+            ),
+              maxLength: 1,
+              inputFormatters: <TextInputFormatter>[FilteringTextInputFormatter.digitsOnly,],
+              keyboardType: TextInputType.number,
+            ),
+            )
           ),
         ),
         Padding(
@@ -58,8 +96,20 @@ class CodigoVerificacao extends StatelessWidget {
             color: Colors.white,
             borderRadius: BorderRadius.circular(6),   
             ),
-            child: const TextField(
-              keyboardType: TextInputType.number),
+            child: Center(child: 
+            TextField(
+              decoration: 
+                InputDecoration(counterText: "", hintText: '0', hintStyle: TextStyle(fontSize: 40, color: Color.fromARGB(155, 161, 161, 161)),  border: InputBorder.none),
+              textAlign: TextAlign.center,
+              style: GoogleFonts.inter(
+              fontSize: 40,
+              fontWeight: FontWeight.w700,
+            ),
+              maxLength: 1,
+              inputFormatters: <TextInputFormatter>[FilteringTextInputFormatter.digitsOnly,],
+              keyboardType: TextInputType.number,
+            ),
+            )
           ),
         ),
       ],
