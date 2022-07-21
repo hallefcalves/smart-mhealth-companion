@@ -4,18 +4,29 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:iconify_flutter/iconify_flutter.dart';
 import 'package:iconify_flutter/icons/eva.dart';
+import 'package:smart_mhealth_companion/components/bottom_navbar.dart';
 import 'package:smart_mhealth_companion/components/center_text.dart';
 import 'package:smart_mhealth_companion/components/left_text.dart';
+import 'package:smart_mhealth_companion/screens/placeholder.dart';
+import 'package:smart_mhealth_companion/screens/purple_contacts.dart';
 import 'package:smart_mhealth_companion/themes/color.dart';
 
+              
 class BtnDialog extends StatelessWidget {
-  const BtnDialog(this.corCaixa, this.corIcone, this.titulo, this.descricao, this.texto,this.imagem);
+  BtnDialog(this.corCaixa, this.corIcone, this.titulo, this.descricao, this.texto,this.imagem, this.child, {Key? key}) : super(key: key);
   final Color corCaixa;
   final Color corIcone;
   final String titulo;
   final String descricao;
   final String texto;
   final String imagem;
+  final Widget child;
+
+   var routes = {
+  '/placeholder': (BuildContext context) => PlaceholderWidget(),
+  '/purple_contacts': (BuildContext context) => Contatos(),
+};
+
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
@@ -63,11 +74,11 @@ class BtnDialog extends StatelessWidget {
           ),
           actions: <Widget>[
             TextButton(
-              onPressed: () => Navigator.pop(context, 'OK'),
+              onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => child)),
               child: Text(
                 'OK',
                 style: GoogleFonts.inter(
-                  fontSize: 20,
+                  fontSize: 22,
                   fontWeight: FontWeight.w700,
                 ),
               ),

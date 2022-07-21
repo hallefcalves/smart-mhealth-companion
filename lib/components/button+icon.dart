@@ -2,25 +2,26 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:iconify_flutter/iconify_flutter.dart';
 import 'package:smart_mhealth_companion/screens/placeholder.dart';
-import 'package:smart_mhealth_companion/screens/purple_contacts.dart';
 import 'package:smart_mhealth_companion/themes/color.dart';
 
-class CustomBtn extends StatelessWidget {
-  CustomBtn(this.btntext, this.themeColor, this.child);
+class CustomBtnIcon extends StatelessWidget {
+  CustomBtnIcon(this.icone,this.btntext, this.themeColor, this.child);
   final String btntext;
   final Color themeColor;
   final Widget child;
+  final Iconify icone;
 
   var routes = {
-  '/placeholder': (BuildContext context) => PlaceholderWidget(),
-  '/purple_contacts': (BuildContext context) => Contatos(),
-};
-
+    '/placeholder': (BuildContext context) => PlaceholderWidget(),
+  };
   @override
   Widget build(BuildContext context) {
-    return ElevatedButton(
-      onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => child)),
+    return ElevatedButton.icon(
+      onPressed: () => Navigator.push(
+          context, MaterialPageRoute(builder: (context) => child)),
+      icon: icone,
       style: ElevatedButton.styleFrom(
         primary: themeColor,
         textStyle: TextStyle(
@@ -33,9 +34,7 @@ class CustomBtn extends StatelessWidget {
           borderRadius: BorderRadius.circular(30),
         ),
       ),
-      child: Text(
-        btntext,
-      ),
+      label: Text(btntext),
     );
   }
 }

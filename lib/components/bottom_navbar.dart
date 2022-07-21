@@ -8,13 +8,17 @@ import 'package:iconify_flutter/icons/bi.dart';
 import 'package:iconify_flutter/icons/fa.dart';
 import 'package:iconify_flutter/icons/fluent.dart';
 import 'package:smart_mhealth_companion/screens/alarm.dart';
+import 'package:smart_mhealth_companion/screens/blue_addRemedio.dart';
 import 'package:smart_mhealth_companion/screens/blue_home.dart';
 import 'package:smart_mhealth_companion/screens/config_alarme.dart';
 import 'package:smart_mhealth_companion/screens/green_home.dart';
 import 'package:smart_mhealth_companion/screens/green_intro.dart';
+import 'package:smart_mhealth_companion/screens/purple_contacts.dart';
 import 'package:smart_mhealth_companion/screens/purple_home.dart';
 import 'package:smart_mhealth_companion/screens/placeholder.dart';
 import 'package:smart_mhealth_companion/themes/color.dart';
+
+GlobalKey navBarGlobalKey = GlobalKey(debugLabel: 'bottomAppBar');
 
 class BottomNavBar extends StatefulWidget {
   const BottomNavBar({Key? key}) : super(key: key);
@@ -23,6 +27,12 @@ class BottomNavBar extends StatefulWidget {
   State<BottomNavBar> createState() => _BottomNavBarState();
 }
 
+var routes = {
+  '/placeholder': (BuildContext context) => PlaceholderWidget(),
+  '/blue_addRemedio': (BuildContext context) => CadastrarRemedio(),
+  '/purple_contacts': (BuildContext context) => Contatos(),
+};
+
 int _indiceAtual = 1;
 
 class _BottomNavBarState extends State<BottomNavBar> {
@@ -30,7 +40,8 @@ class _BottomNavBarState extends State<BottomNavBar> {
     PurpleHome(),
     GreenHome(),
     BlueHome(),
-    PlaceholderWidget()
+    PlaceholderWidget(),
+    Contatos()
   ];
 
   @override
