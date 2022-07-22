@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -11,9 +13,9 @@ import 'package:smart_mhealth_companion/screens/placeholder.dart';
 import 'package:smart_mhealth_companion/screens/purple_contacts.dart';
 import 'package:smart_mhealth_companion/themes/color.dart';
 
-              
 class BtnDialog extends StatelessWidget {
-  BtnDialog(this.corCaixa, this.corIcone, this.titulo, this.descricao, this.texto,this.imagem, this.child, {Key? key}) : super(key: key);
+  BtnDialog(this.corCaixa, this.corIcone, this.titulo, this.descricao,
+      this.texto, this.imagem, this.child, this.btntitulo);
   final Color corCaixa;
   final Color corIcone;
   final String titulo;
@@ -21,11 +23,12 @@ class BtnDialog extends StatelessWidget {
   final String texto;
   final String imagem;
   final Widget child;
+  final String btntitulo;
 
-   var routes = {
-  '/placeholder': (BuildContext context) => PlaceholderWidget(),
-  '/purple_contacts': (BuildContext context) => Contatos(),
-};
+  var routes = {
+    '/placeholder': (BuildContext context) => PlaceholderWidget(),
+    '/purple_contacts': (BuildContext context) => const Contatos(),
+  };
 
   @override
   Widget build(BuildContext context) {
@@ -41,40 +44,37 @@ class BtnDialog extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(top: 5, left: 1),
                 child: IconButton(
-                  icon: Iconify(Eva.close_circle_fill,
-                      color: corIcone, size: 45),
+                  icon:
+                      Iconify(Eva.close_circle_fill, color: corIcone, size: 45),
                   onPressed: () => Navigator.pop(context, 'OK'),
                 ),
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 5),
-                child: CenterTxt(
-                    22, FontWeight.w700, titulo),
+                child: CenterTxt(22, FontWeight.w700, titulo),
               )
             ],
           ),
           content: Stack(
             children: [
               Padding(
-                padding: EdgeInsets.only(top: 18),
+                padding: const EdgeInsets.only(top: 18),
                 child: Image.asset(
                   imagem,
                 ),
               ),
               Padding(
-                  padding: EdgeInsets.only(top: 220),
-                  child: CenterTxt(
-                      19, FontWeight.w500, descricao)),
+                  padding: const EdgeInsets.only(top: 220),
+                  child: CenterTxt(19, FontWeight.w500, descricao)),
               Padding(
-                padding: EdgeInsets.only(top: 270),
-                child: CenterTxt(16, FontWeight.w400,
-                    texto),
+                padding: const EdgeInsets.only(top: 270),
+                child: CenterTxt(16, FontWeight.w400, texto),
               )
             ],
           ),
           actions: <Widget>[
             TextButton(
-              onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => child)),
+              onPressed: () => Navigator.pop(context, 'OK'),
               child: Text(
                 'OK',
                 style: GoogleFonts.inter(
@@ -87,7 +87,7 @@ class BtnDialog extends StatelessWidget {
         ),
       ),
       style: ElevatedButton.styleFrom(
-        primary: accentColorMedium,
+        primary: corIcone,
         textStyle: TextStyle(
           fontFamily: GoogleFonts.inter().fontFamily,
           fontSize: 25,
@@ -98,7 +98,8 @@ class BtnDialog extends StatelessWidget {
           borderRadius: BorderRadius.circular(30),
         ),
       ),
-      child: const Text('OK'),
+      child: Text(btntitulo),
     );
+
   }
 }

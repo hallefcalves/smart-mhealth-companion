@@ -21,9 +21,9 @@ class BlueHome extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
        appBar: AppBar(
-        backgroundColor: secondaryColorMedium,
+        backgroundColor: secondaryColor,
        ),
-      backgroundColor: secondaryColor,
+      backgroundColor: secondaryColorLight,
       body: Center(
         child: ListView(
 	        children:[   
@@ -33,7 +33,7 @@ class BlueHome extends StatelessWidget {
               return Card(
                 color: accentColorLight,
                 child: Padding(
-                  padding: EdgeInsets.only(left: 75, right: 75),
+                  padding: EdgeInsets.only(top:2, left: 75, right: 75),
                   child: Container(
                   height: 390,
                   width: 220.0,
@@ -144,8 +144,8 @@ class BlueHome extends StatelessWidget {
             child: Container(
               height: 60,
               width: 320,
-              decoration: const BoxDecoration(
-                color: secondaryColorLight,
+              decoration:  BoxDecoration(
+                color: secondaryColor.withOpacity(0.4),
               ),
               child: Row(
                 children: [
@@ -164,7 +164,7 @@ class BlueHome extends StatelessWidget {
             ),
             Padding(
               padding: const EdgeInsets.only(top: 25, left: 13, right: 13, bottom: 20),
-              child: CustomBtnIcon(const Iconify(Eva.plus_outline,color: Colors.white, size: 40), 'Novo Remédio', secondaryColorMedium, const CadastrarRemedio()),
+              child: CustomBtnIcon(const Iconify(Eva.plus_outline,color: Colors.white, size: 40), 'Novo Remédio', secondaryColorMedium, CadastrarRemedio()),
             ),
 	        ],
         ),

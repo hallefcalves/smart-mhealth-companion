@@ -40,7 +40,7 @@ class PurpleHome extends StatelessWidget {
                   ),
                Padding(
                 padding: EdgeInsets.only(top: 64, left: 88, right: 88),
-                child: BtnDialog(accentColor, accentColorMedium, 'Bem-vindo ao \n Despertador Deles', 'Você está conectado a Ana Clara!', 'Ana Clara agora pode acompanhar seus tratamentos, facilitar sua vida e ajudar a manter sua boa saúde!','lib/assets/anaclara_prf.png', Contatos() ),
+                child: BtnDialog(accentColor, accentColorMedium, 'Bem-vindo ao \n Despertador Deles', 'Você está conectado a Ana Clara!', 'Ana Clara agora pode acompanhar seus tratamentos, facilitar sua vida e ajudar a manter sua boa saúde!','lib/assets/anaclara_prf.png', Contatos(), 'OK' ),
               ),
                 Row(
                     children: const[
