@@ -45,11 +45,11 @@ class CustomNotification extends StatelessWidget {
           ),
           Padding(
             padding: EdgeInsets.only(top: 15, left: 60, right: 45),
-            child: LetfTxt(22, title),
+            child: LetfTxt(22, FontWeight.w700,  title),
           ),
           Padding(
             padding: EdgeInsets.only(top: 70, left: 54, right: 24),
-            child: LetfTxt(18, msg),
+            child: LetfTxt(18, FontWeight.w500, msg),
           )
         ],
       ),

@@ -9,8 +9,8 @@ const appBarColor = Color.fromARGB(255, 226, 231, 234);
 
 const secondaryColor =  Color.fromARGB(255, 95, 190, 229);
 const secondaryColorLight =  Color.fromARGB(255, 172, 222, 243);
-const secondaryColorMedium =  Color.fromARGB(255, 81, 162, 196);
-const secondaryColorDark =  Color.fromARGB(255, 66, 133, 161);
+const secondaryColorMedium =  Color.fromARGB(255, 70, 180, 228);
+const secondaryColorDark =  Color.fromARGB(255, 18, 145, 199);
 
 const accentColor =  Color.fromARGB(255, 204, 189, 255);
 const accentColorLight =  Color.fromARGB(255, 232, 225, 255);

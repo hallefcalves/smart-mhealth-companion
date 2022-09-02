@@ -29,12 +29,12 @@ class GreenIntro extends StatelessWidget {
         children: [
           const Padding(
               padding: EdgeInsets.only(top: 35, left: 13, right: 13),
-              child: CenterTxt(40, "Bem-Vindo ao seu Despertador de Remédios"),
+              child: CenterTxt(40, FontWeight.w700, "Bem-Vindo ao seu Despertador de Remédios"),
               ),
              
           const Padding(
             padding: EdgeInsets.only(top: 40, left: 40, right: 40,),
-            child:CenterTxt(22, "Nessa página você irá encontrar informações sobre os alarmes das suas medicações"),
+            child:CenterTxt(22, FontWeight.w700, "Nessa página você irá encontrar informações sobre os alarmes das suas medicações"),
           ),
           const Padding(
             padding: EdgeInsets.only(top: 40, left: 13),
