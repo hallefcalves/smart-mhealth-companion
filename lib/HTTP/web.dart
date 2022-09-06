@@ -90,9 +90,11 @@ alarme: {
       "type": "Text"
       "value": "8 em 8"
     }
-    "horario_inicio": "08:11 UTC-3"
+    "horario_inicio": {
+      "type":"DateTime"
+      "value":"2022-09-06T22:32:38.076Z"
     "remedio": {"type":"Relationship", "value":"urn:ngsi-ld:remedio:001"}
-    "codigo":  {"type":"Relationship", "value":"102536"}
+    "refIdoso": {"type": "Relationship", "value": "urn:ngsi-ld:Idoso:001"}
 }
 
 ingestaoRemedios {
@@ -104,12 +106,69 @@ ingestaoRemedios {
     codigo: ref,
 } 
 
+{
+  "id": "urn:ngsi-ld:ingestaoRemedio-idoso001:001",
+  "type": "ingestaoRemedio"
+  "remedio": {
+    "type": "Relationship",
+    "value": "urn:ngsi-ld:remedio:001"
+  },
+  "dataHora": {
+    "type": "Date" 
+    "value":"2022-09-06T22:32:38.076Z",
+  },  
+  "tenativasAtraso": {
+    "type": Integer
+    "value": 0,
+  },
+  "tomou": { 
+    "type": "Bool"
+    "value": "false",
+  },
+  "refIdoso": {
+    "type": "Relationship",
+    "value": "urn:ngsi-ld:idoso:001"
+  }
+}
+
 idoso {
   id: string,
+  type: idoso
   refRemedio: [],
   refAlarme: [],
   refIngestaoRemedios: [],
   codigo: int,
+}
+
+{
+  "id": "urn:ngsi-ld:idoso:001",
+  "type": "Idoso",
+  "refRemedio": [
+    {
+      "type": "Relationship",
+      "value": "urn:ngsi-ld:remedio:001"
+    },
+    {
+      "type": "Relationship",
+      "value": "urn:ngsi-ld:remedio:001"
+    }
+  ],
+  "refAlarme": [
+    {
+      "type": "Relationship",
+      "value": "urn:ngsi-ld:alarme:001"
+    }
+  ],
+  "refIngestaoRemedio": [
+    {
+      "type": "Relationship",
+      "value": "urn:ngsi-ld:urn:ngsi-ld:ingestaoRemedio-idoso001:001"
+    }
+  ],
+  "codigo": {
+    "type": "Integer",
+    "value": "106283"
+  }
 }
 
 http://{{url}}:1026/v2/entities/?q=name==Advil&type=remedio
