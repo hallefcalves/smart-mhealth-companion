@@ -26,13 +26,6 @@ class _CadastrarRemedioState extends State<CadastrarRemedio> {
   TimeOfDay selectedTime = TimeOfDay.now();
   @override
   Widget build(BuildContext context) {
-         final List<String> items = [
-      'Item1',
-      'Item2',
-      'Item3',
-      'Item4',
-    ];
-    String? selectedValue;
     return Scaffold(
       backgroundColor: secondaryColorLight,
       appBar: AppBar(
@@ -56,7 +49,7 @@ class _CadastrarRemedioState extends State<CadastrarRemedio> {
               child:Iconify(Eva.camera_fill, color: infoDefault, size: 45)),
           ],
           ),
-          Padding(padding: EdgeInsets.only(top: 10),
+          Padding(padding: const EdgeInsets.only(top: 10),
           child: Container(
              width: 600,
             height: 100,
@@ -111,7 +104,7 @@ class _CadastrarRemedioState extends State<CadastrarRemedio> {
               ),
           ),
           ),
-          Padding(padding: EdgeInsets.only(top: 10),
+          Padding(padding: const EdgeInsets.only(top: 10),
           child: Container(
              width: 600,
             height: 100,
@@ -127,10 +120,13 @@ class _CadastrarRemedioState extends State<CadastrarRemedio> {
                   onPressed: () {
                     _selectTime(context);
                   },
-                child: Text("Choose Time"),
+                child: const Text("Choose Time"),
                     ),
                     ),
-                    Text("${selectedTime.hour}:${selectedTime.minute}"),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text("${selectedTime.hour}:${selectedTime.minute}"),
+                    ),
                   Row(
                     children: const [
                       Padding(
@@ -148,7 +144,7 @@ class _CadastrarRemedioState extends State<CadastrarRemedio> {
               ),
           ),
           ),
-          Padding(padding: EdgeInsets.only(top: 10),
+          Padding(padding: const EdgeInsets.only(top: 10),
           child: Container(
              width: 600,
             height: 100,
@@ -164,7 +160,7 @@ class _CadastrarRemedioState extends State<CadastrarRemedio> {
                   onPressed: () {
                     _selectTime(context);
                   },
-                child: Text("Choose Time"),
+                child: const Text("Choose Time"),
                     ),
                     ),
                     Text("${selectedTime.hour}:${selectedTime.minute}"),
@@ -186,8 +182,8 @@ class _CadastrarRemedioState extends State<CadastrarRemedio> {
           ),
           ),
               Padding(
-                padding: EdgeInsets.only(top: 10, left: 35, right: 35),
-                  child: BtnDialog(accentColorLight, secondaryColor, 'Parabéns!', 'Você cadastrou o remédio Advil com sucesso!', '', 'lib/assets/exemplo_remedio.png', BlueHome(), 'Concluir')
+                padding: const EdgeInsets.only(top: 10, left: 35, right: 35),
+                  child: BtnDialog(accentColorLight, secondaryColor, 'Parabéns!', 'Você cadastrou o remédio Advil com sucesso!', '', 'lib/assets/exemplo_remedio.png', const BlueHome(), 'Concluir')
               ),
         ],
       ),
