@@ -1,10 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:smart_mhealth_companion/components/bottom_navbar.dart';
 import 'package:smart_mhealth_companion/components/notification.dart';
-import 'package:smart_mhealth_companion/components/button.dart';
-import 'package:smart_mhealth_companion/screens/placeholder.dart';
 import 'package:smart_mhealth_companion/themes/color.dart';
 
 class GreenHome extends StatelessWidget {
@@ -19,7 +14,7 @@ class GreenHome extends StatelessWidget {
        ),
         body: Center(
           child: ListView(
-            children: [
+            children: const [
               Padding(
                 padding: EdgeInsets.only(top: 40, left: 26, right: 15),
                 child: CustomNotification(

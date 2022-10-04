@@ -1,21 +1,14 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:iconify_flutter/iconify_flutter.dart';
 import 'package:iconify_flutter/icons/eva.dart';
-import 'package:smart_mhealth_companion/components/bottom_navbar.dart';
 import 'package:smart_mhealth_companion/components/center_text.dart';
-import 'package:smart_mhealth_companion/components/left_text.dart';
 import 'package:smart_mhealth_companion/screens/placeholder.dart';
 import 'package:smart_mhealth_companion/screens/purple_contacts.dart';
-import 'package:smart_mhealth_companion/themes/color.dart';
 
 class BtnDialog extends StatelessWidget {
   BtnDialog(this.corCaixa, this.corIcone, this.titulo, this.descricao,
-      this.texto, this.imagem, this.child, this.btntitulo);
+      this.texto, this.imagem, this.child, this.btntitulo, {super.key});
   final Color corCaixa;
   final Color corIcone;
   final String titulo;
@@ -25,8 +18,8 @@ class BtnDialog extends StatelessWidget {
   final Widget child;
   final String btntitulo;
 
-  var routes = {
-    '/placeholder': (BuildContext context) => PlaceholderWidget(),
+  final routes = {
+    '/placeholder': (BuildContext context) => const PlaceholderWidget(),
     '/purple_contacts': (BuildContext context) => const Contatos(),
   };
 
@@ -87,7 +80,7 @@ class BtnDialog extends StatelessWidget {
         ),
       ),
       style: ElevatedButton.styleFrom(
-        primary: corIcone,
+        backgroundColor: corIcone,
         textStyle: TextStyle(
           fontFamily: GoogleFonts.inter().fontFamily,
           fontSize: 25,

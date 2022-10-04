@@ -1,18 +1,12 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:iconify_flutter/iconify_flutter.dart';
-import 'package:iconify_flutter/icons/fa.dart';
-import 'package:smart_mhealth_companion/components/button.dart';
-import 'package:smart_mhealth_companion/components/center_text.dart';
 import 'package:smart_mhealth_companion/components/left_text.dart';
-import 'package:smart_mhealth_companion/themes/color.dart';
 import 'package:iconify_flutter/icons/eva.dart';
 
 class CustomNotification extends StatelessWidget {
-  CustomNotification(this.corBox, this.corIcone, this.title, this.msg);
+  const CustomNotification(this.corBox, this.corIcone, this.title, this.msg, {super.key});
   final Color corBox;
   final Color corIcone;
   final String msg;
@@ -45,11 +39,11 @@ class CustomNotification extends StatelessWidget {
           ),
           Padding(
             padding: EdgeInsets.only(top: 15, left: 60, right: 45),
-            child: LetfTxt(22, FontWeight.w700,  title),
+            child: LeftTxt(22, FontWeight.w700,  title),
           ),
           Padding(
             padding: EdgeInsets.only(top: 70, left: 54, right: 24),
-            child: LetfTxt(18, FontWeight.w500, msg),
+            child: LeftTxt(18, FontWeight.w500, msg),
           )
         ],
       ),

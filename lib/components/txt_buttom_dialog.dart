@@ -1,16 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:iconify_flutter/iconify_flutter.dart';
 import 'package:iconify_flutter/icons/eva.dart';
 import 'package:smart_mhealth_companion/components/center_text.dart';
-import 'package:smart_mhealth_companion/components/left_text.dart';
-import 'package:smart_mhealth_companion/themes/color.dart';
 
 class TxtDialog extends StatelessWidget {
   const TxtDialog(this.txtBtn, this.corCaixa, this.corIcone, this.titulo, this.descricao,
-      this.texto);
+      this.texto, {super.key});
   final Color corCaixa;
   final Color corIcone;
   final String titulo;
@@ -45,10 +41,10 @@ class TxtDialog extends StatelessWidget {
           content: Stack(
             children: [
               Padding(
-                  padding: EdgeInsets.only(top: 10),
+                  padding: const EdgeInsets.only(top: 10),
                   child: CenterTxt(19, FontWeight.w500, descricao)),
               Padding(
-                padding: EdgeInsets.only(top: 35),
+                padding: const EdgeInsets.only(top: 35),
                 child: CenterTxt(16, FontWeight.w400, texto),
               )
             ],

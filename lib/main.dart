@@ -1,9 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:iconify_flutter/iconify_flutter.dart';
-import 'package:iconify_flutter/icons/fa.dart';
-import 'package:iconify_flutter/icons/bi.dart';
-import 'package:iconify_flutter/icons/uil.dart';
-import 'package:iconify_flutter/icons/fluent.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:smart_mhealth_companion/components/bottom_navbar.dart';
 import 'package:smart_mhealth_companion/screens/alarm.dart';
@@ -25,7 +20,7 @@ Future<void> main() async {
       onSelectNotification: (String? payload) async {
     if (payload != null) {
       //Navigator.pushNamed(context, '/alarm');
-      Destino.pagina = GreenIntro();
+      Destino.pagina = const GreenIntro();
       runApp(const MaterialApp(
         //errado, acho
         home: BottomNavBar(),
@@ -49,10 +44,10 @@ Future<void> main() async {
 }
 
 var routes = {
-  '/alarm': (BuildContext context) => alarm(),
-  '/config_alarme': (BuildContext context) => alarm_config(),
-  '/green_home': (BuildContext context) => GreenHome(),
-  '/placeholder': (BuildContext context) => PlaceholderWidget(),
+  '/alarm': (BuildContext context) => const Alarm(),
+  '/config_alarme': (BuildContext context) => const ConfigAlarm(),
+  '/green_home': (BuildContext context) => const GreenHome(),
+  '/placeholder': (BuildContext context) => const PlaceholderWidget(),
 };
 
 class Destino {

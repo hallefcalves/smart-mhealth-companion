@@ -16,6 +16,7 @@ Future<String?> fetchData(codigo) async {
   } else {
     print(response.reasonPhrase);
   }
+  return null;
 }
 
 sendData() async {

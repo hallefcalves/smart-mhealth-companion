@@ -1,20 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:smart_mhealth_companion/screens/placeholder.dart';
 import 'package:smart_mhealth_companion/screens/purple_contacts.dart';
-import 'package:smart_mhealth_companion/themes/color.dart';
 
 class CustomBtn extends StatelessWidget {
-  CustomBtn(this.btntext, this.themeColor, this.child);
+  CustomBtn(this.btntext, this.themeColor, this.child, {super.key});
   final String btntext;
   final Color themeColor;
   final Widget child;
 
-  var routes = {
-  '/placeholder': (BuildContext context) => PlaceholderWidget(),
-  '/purple_contacts': (BuildContext context) => Contatos(),
+  final routes = {
+  '/placeholder': (BuildContext context) => const PlaceholderWidget(),
+  '/purple_contacts': (BuildContext context) => const Contatos(),
 };
 
   @override
@@ -22,7 +19,7 @@ class CustomBtn extends StatelessWidget {
     return ElevatedButton(
       onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => child)),
       style: ElevatedButton.styleFrom(
-        primary: themeColor,
+        backgroundColor: themeColor,
         textStyle: TextStyle(
           fontFamily: GoogleFonts.inter().fontFamily,
           fontSize: 25,

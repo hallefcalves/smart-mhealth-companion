@@ -1,15 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:iconify_flutter/iconify_flutter.dart';
 import 'package:iconify_flutter/icons/eva.dart';
-import 'package:smart_mhealth_companion/components/button+icon.dart';
-import 'package:smart_mhealth_companion/components/button.dart';
+import 'package:smart_mhealth_companion/components/button_icon.dart';
 import 'package:smart_mhealth_companion/components/center_text.dart';
-import 'package:smart_mhealth_companion/components/icon_buttom_dialog.dart';
-import 'package:smart_mhealth_companion/screens/blue_addRemedio.dart';
-import 'package:smart_mhealth_companion/screens/placeholder.dart';
+import 'package:smart_mhealth_companion/screens/blue_add_remedio.dart';
 import 'package:smart_mhealth_companion/themes/color.dart';
 import 'package:iconify_flutter/icons/icon_park_outline.dart';
 
@@ -33,7 +28,7 @@ class BlueHome extends StatelessWidget {
               return Card(
                 color: accentColorLight,
                 child: Padding(
-                  padding: EdgeInsets.only(top:2, left: 75, right: 75),
+                  padding: const EdgeInsets.only(top:2, left: 75, right: 75),
                   child: Container(
                   height: 390,
                   width: 220.0,
@@ -47,9 +42,9 @@ class BlueHome extends StatelessWidget {
                       Stack(
                         children:  [
                           Padding(
-                            padding: EdgeInsets.only(top: 200),
+                            padding: const EdgeInsets.only(top: 200),
                             child: IconButton(
-                              icon: Iconify(Eva.trash_2_fill, color: errorDefault, size: 40),
+                              icon: const Iconify(Eva.trash_2_fill, color: errorDefault, size: 40),
                               iconSize: 50,
                               onPressed: () => showDialog<String>(
                                 context: context,
@@ -164,7 +159,7 @@ class BlueHome extends StatelessWidget {
             ),
             Padding(
               padding: const EdgeInsets.only(top: 25, left: 13, right: 13, bottom: 20),
-              child: CustomBtnIcon(const Iconify(Eva.plus_outline,color: Colors.white, size: 40), 'Novo Remédio', secondaryColorMedium, CadastrarRemedio()),
+              child: CustomBtnIcon(const Iconify(Eva.plus_outline,color: Colors.white, size: 40), 'Novo Remédio', secondaryColorMedium, const CadastrarRemedio()),
             ),
 	        ],
         ),

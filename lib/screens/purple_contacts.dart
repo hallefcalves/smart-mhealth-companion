@@ -1,11 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:smart_mhealth_companion/components/bottom_navbar.dart';
 import 'package:iconify_flutter/iconify_flutter.dart';
 import 'package:iconify_flutter/icons/eva.dart';
-import 'package:smart_mhealth_companion/components/button+icon.dart';
-import 'package:smart_mhealth_companion/components/button.dart';
+import 'package:smart_mhealth_companion/components/button_icon.dart';
 import 'package:smart_mhealth_companion/components/center_text.dart';
 import 'package:smart_mhealth_companion/screens/placeholder.dart';
 import 'package:smart_mhealth_companion/themes/color.dart';
@@ -32,7 +28,7 @@ class Contatos extends StatelessWidget {
               return Card(
                 color: accentColor,
                 child: Padding(
-                  padding: EdgeInsets.only(left: 75, right: 75),
+                  padding: const EdgeInsets.only(left: 75, right: 75),
                   child: Container(
                   height: 390,
                   width: 247.0,
@@ -82,7 +78,7 @@ class Contatos extends StatelessWidget {
             ),
             Padding(
               padding: const EdgeInsets.only(top: 25, left: 13, right: 13, bottom: 20),
-              child: CustomBtnIcon(const Iconify(Eva.phone_call_fill,color: Colors.white, size: 40), 'Clique aqui para ligar', accentColorMedium, PlaceholderWidget()),
+              child: CustomBtnIcon(const Iconify(Eva.phone_call_fill,color: Colors.white, size: 40), 'Clique aqui para ligar', accentColorMedium, const PlaceholderWidget()),
             ),
 	        ],
         ),

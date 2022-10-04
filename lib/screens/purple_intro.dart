@@ -1,18 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:iconify_flutter/iconify_flutter.dart';
-import 'package:smart_mhealth_companion/components/bottom_navbar.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:iconify_flutter/icons/bi.dart';
-import 'package:iconify_flutter/icons/fa.dart';
-import 'package:iconify_flutter/icons/fluent.dart';
 import 'package:smart_mhealth_companion/components/button.dart';
 import 'package:smart_mhealth_companion/components/center_text.dart';
 import 'package:smart_mhealth_companion/screens/blue_intro.dart';
-import 'package:smart_mhealth_companion/screens/placeholder.dart';
 import 'package:smart_mhealth_companion/themes/color.dart';
 
 
@@ -22,7 +13,7 @@ class PurpleIntro extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 204, 189, 255),
+      backgroundColor: const Color.fromARGB(255, 204, 189, 255),
       body: Center(
          child: ListView(
         children: [
@@ -45,7 +36,7 @@ class PurpleIntro extends StatelessWidget {
             child: CustomBtn(
               "Próximo",
                MyTheme.defaultTheme.primaryColor,
-               BlueIntro(),
+               const BlueIntro(),
               )
           ),
         ],

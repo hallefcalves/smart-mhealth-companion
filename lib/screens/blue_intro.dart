@@ -1,18 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:iconify_flutter/iconify_flutter.dart';
-import 'package:smart_mhealth_companion/components/bottom_navbar.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:iconify_flutter/icons/bi.dart';
-import 'package:iconify_flutter/icons/fa.dart';
 import 'package:iconify_flutter/icons/fluent.dart';
 import 'package:smart_mhealth_companion/components/button.dart';
 import 'package:smart_mhealth_companion/components/center_text.dart';
 import 'package:smart_mhealth_companion/screens/green_home.dart';
-import 'package:smart_mhealth_companion/screens/placeholder.dart';
 import 'package:smart_mhealth_companion/themes/color.dart';
 
 
@@ -45,7 +36,7 @@ class BlueIntro extends StatelessWidget {
             child: CustomBtn(
               "Pronto",
                MyTheme.defaultTheme.primaryColor,
-              GreenHome(),
+              const GreenHome(),
               )
           ),
         ],
