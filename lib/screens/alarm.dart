@@ -69,15 +69,7 @@ class Alarm extends StatelessWidget with PreferredSizeWidget {
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: <Widget>[
                             ElevatedButton(
-                              onPressed: () => {
-                                //Navigator.pushNamed(context, '/config_alarme')
-                                Destino.pagina = const ConfigAlarm(),
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => const MyApp()),
-                                ) /*validar que tomou o remedio*/
-                              },
+                              onPressed: () => {},
                               style: ElevatedButton.styleFrom(
                                 backgroundColor: MyTheme.primaryMedium,
                                 shape: RoundedRectangleBorder(

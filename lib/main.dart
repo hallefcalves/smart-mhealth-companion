@@ -45,7 +45,6 @@ Future<void> main() async {
 
 var routes = {
   '/alarm': (BuildContext context) => const Alarm(),
-  '/config_alarme': (BuildContext context) => const ConfigAlarm(),
   '/green_home': (BuildContext context) => const GreenHome(),
   '/placeholder': (BuildContext context) => const PlaceholderWidget(),
 };

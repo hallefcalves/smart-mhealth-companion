@@ -1,10 +1,13 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:iconify_flutter/iconify_flutter.dart';
 import 'package:iconify_flutter/icons/eva.dart';
-import 'package:smart_mhealth_companion/components/buttom_dialog.dart';
+import 'package:smart_mhealth_companion/components/button_dialog.dart';
 import 'package:smart_mhealth_companion/components/left_text.dart';
 import 'package:smart_mhealth_companion/screens/blue_home.dart';
+import 'package:smart_mhealth_companion/screens/config_alarme.dart';
 import 'package:smart_mhealth_companion/themes/color.dart';
 
 class CadastrarRemedio extends StatefulWidget {
@@ -14,8 +17,41 @@ class CadastrarRemedio extends StatefulWidget {
   State<CadastrarRemedio> createState() => _CadastrarRemedioState();
 }
 
+const List<int> listHour = <int>[
+  1,
+  2,
+  3,
+  4,
+  5,
+  6,
+  7,
+  8,
+  9,
+  10,
+  11,
+  12,
+  13,
+  14,
+  15,
+  16,
+  17,
+  18,
+  19,
+  20,
+  21,
+  22,
+  23
+];
+const List<int> listMinute = <int>[00, 15, 30, 45];
+
 class _CadastrarRemedioState extends State<CadastrarRemedio> {
+  int hour = 1;
+  int minute = 00;
+
   TimeOfDay selectedTime = TimeOfDay.now();
+
+  TextEditingController nomeController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -62,6 +98,7 @@ class _CadastrarRemedioState extends State<CadastrarRemedio> {
                     style: const TextStyle(
                       height: 0.8,
                     ),
+                    controller: nomeController,
                     decoration: InputDecoration(
                       fillColor: Colors.white,
                       filled: true,
@@ -115,7 +152,7 @@ class _CadastrarRemedioState extends State<CadastrarRemedio> {
                     onPressed: () {
                       _selectTime(context);
                     },
-                    child: const Text("Choose Time"),
+                    child: const Text("Selecione a hora"),
                   ),
                 ),
                 Padding(
@@ -126,7 +163,7 @@ class _CadastrarRemedioState extends State<CadastrarRemedio> {
                   children: const [
                     Padding(
                       padding: EdgeInsets.only(top: 2, left: 29),
-                      child: LeftTxt(20, FontWeight.w400, 'Nome do Remédio:'),
+                      child: LeftTxt(20, FontWeight.w400, "Horário de inicio"),
                     ),
                     Padding(
                         padding: EdgeInsets.only(top: 1, left: 90),
@@ -148,21 +185,63 @@ class _CadastrarRemedioState extends State<CadastrarRemedio> {
               ),
               child: Stack(children: [
                 Padding(
-                  padding: const EdgeInsets.only(
-                      top: 40.0, left: 35.0, bottom: 15.0),
-                  child: ElevatedButton(
-                    onPressed: () {
-                      _selectTime(context);
-                    },
-                    child: const Text("Choose Time"),
-                  ),
-                ),
-                Text("${selectedTime.hour}:${selectedTime.minute}"),
+                    padding: const EdgeInsets.only(
+                        top: 40.0, left: 35.0, bottom: 15.0),
+                    child: Row(
+                      children: [
+                        DropdownButton<int>(
+                          value: hour,
+                          icon: const Icon(Icons.arrow_downward),
+                          elevation: 16,
+                          style: const TextStyle(color: Colors.deepPurple),
+                          underline: Container(
+                            height: 2,
+                            color: Colors.deepPurpleAccent,
+                          ),
+                          onChanged: (int? value) {
+                            // This is called when the user selects an item.
+                            setState(() {
+                              hour = value!;
+                            });
+                          },
+                          items:
+                              listHour.map<DropdownMenuItem<int>>((int value) {
+                            return DropdownMenuItem<int>(
+                              value: value,
+                              child: Text(value.toString()),
+                            );
+                          }).toList(),
+                        ),
+                        DropdownButton<int>(
+                          value: minute,
+                          icon: const Icon(Icons.arrow_downward),
+                          elevation: 16,
+                          style: const TextStyle(color: Colors.deepPurple),
+                          underline: Container(
+                            height: 2,
+                            color: Colors.deepPurpleAccent,
+                          ),
+                          onChanged: (int? value) {
+                            // This is called when the user selects an item.
+                            setState(() {
+                              minute = value!;
+                            });
+                          },
+                          items: listMinute
+                              .map<DropdownMenuItem<int>>((int value) {
+                            return DropdownMenuItem<int>(
+                              value: value,
+                              child: Text(value.toString()),
+                            );
+                          }).toList(),
+                        )
+                      ],
+                    )),
                 Row(
                   children: const [
                     Padding(
                       padding: EdgeInsets.only(top: 2, left: 29),
-                      child: LeftTxt(20, FontWeight.w400, 'Nome do Remédio:'),
+                      child: LeftTxt(20, FontWeight.w400, 'Frequência:'),
                     ),
                     Padding(
                         padding: EdgeInsets.only(top: 1, left: 90),
@@ -179,10 +258,10 @@ class _CadastrarRemedioState extends State<CadastrarRemedio> {
                   accentColorLight,
                   secondaryColor,
                   'Parabéns!',
-                  'Você cadastrou o remédio Advil com sucesso!',
+                  'Você cadastrou o remédio ${nomeController.text} com sucesso!',
                   '',
                   'lib/assets/exemplo_remedio.png',
-                  const BlueHome(),
+                  configAlarm(nomeController, hour, minute, selectedTime),
                   'Concluir')),
         ],
       ),

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:iconify_flutter/iconify_flutter.dart';
 import 'package:iconify_flutter/icons/eva.dart';
-import 'package:smart_mhealth_companion/components/buttom_dialog.dart';
+import 'package:smart_mhealth_companion/components/button_dialog.dart';
 import 'package:smart_mhealth_companion/components/center_text.dart';
 import 'package:smart_mhealth_companion/components/codigo_verificacao.dart';
 import 'package:smart_mhealth_companion/components/icon_buttom_dialog.dart';
