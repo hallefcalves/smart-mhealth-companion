@@ -12,7 +12,7 @@ extension DateTimeExtension on DateTime {
 }
 
 // precisa rodar sempre que cria um alarme, e quando liga o celular
-Future<Widget> configAlarm(nome, hour, minute, TimeOfDay time) async {
+Widget configAlarm(nome, hour, minute, TimeOfDay time) {
   DateTime date = DateTime.now();
   final dateTime = date.applied(time);
 
@@ -36,7 +36,7 @@ Future<Widget> configAlarm(nome, hour, minute, TimeOfDay time) async {
   var platformChannelSpecifics =
       NotificationDetails(android: androidPlatFormChannelSpecifics);
 
-  await flutterLocalNotificationsPlugin.zonedSchedule(
+  flutterLocalNotificationsPlugin.zonedSchedule(
       0,
       'Remédio',
       'Bom dia! Hora de tomar o remédio.',
