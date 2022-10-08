@@ -21,12 +21,11 @@ class BarcodeScanner {
           '#ff6666', 'Cancel', true, ScanMode.DEFAULT);
       _result = await verRemedioAPI(barcodeScanRes);
       decoded = JSON.parse(_result);
-      if (kDebugMode) {
-        print(barcodeScanRes);
-      }
-      if (kDebugMode) {
-        print(decoded.description);
-      }
+
+        debugPrint(barcodeScanRes);
+      
+
+        debugPrint(decoded.description);
     } on PlatformException {
       barcodeScanRes = 'Failed to get platform version.';
     }

@@ -13,13 +13,9 @@ Future<String?> fetchData(codigo) async {
   http.StreamedResponse response = await request.send();
 
   if (response.statusCode == 200) {
-    if (kDebugMode) {
-      print(await response.stream.bytesToString());
-    }
+    debugPrint(await response.stream.bytesToString());
   } else {
-    if (kDebugMode) {
-      print(response.reasonPhrase);
-    }
+    debugPrint(response.reasonPhrase);
   }
   return null;
 }
@@ -47,13 +43,9 @@ sendData() async {
   http.StreamedResponse response = await request.send();
 
   if (response.statusCode == 200) {
-    if (kDebugMode) {
-      print(await response.stream.bytesToString());
-    }
+    debugPrint(await response.stream.bytesToString());
   } else {
-    if (kDebugMode) {
-      print(response.reasonPhrase);
-    }
+    debugPrint(response.reasonPhrase);
   }
 }
 
