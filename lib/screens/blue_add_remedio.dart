@@ -186,7 +186,7 @@ class _CadastrarRemedioState extends State<CadastrarRemedio> {
                     Padding(
                       padding: const EdgeInsets.only(top: 20.0, left: 16.0),
                       child:
-                          Text("${selectedTime.hour}:${selectedTime.minute}", style: TextStyle(fontSize: 32)),
+                          Text("${selectedTime.hour}:${selectedTime.minute}", style: const TextStyle(fontSize: 32)),
                           
                     ),
                   ],
