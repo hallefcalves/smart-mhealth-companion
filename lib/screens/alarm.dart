@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:smart_mhealth_companion/main.dart';
 import '../themes/color.dart';
-import 'config_alarme.dart';
 
 class Alarm extends StatelessWidget with PreferredSizeWidget {
   const Alarm({Key? key}) : super(key: key);

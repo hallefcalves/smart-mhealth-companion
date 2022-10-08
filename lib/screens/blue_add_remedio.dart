@@ -1,12 +1,9 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:iconify_flutter/iconify_flutter.dart';
 import 'package:iconify_flutter/icons/eva.dart';
 import 'package:smart_mhealth_companion/components/button_dialog.dart';
 import 'package:smart_mhealth_companion/components/left_text.dart';
-import 'package:smart_mhealth_companion/screens/blue_home.dart';
 import 'package:smart_mhealth_companion/screens/config_alarme.dart';
 import 'package:smart_mhealth_companion/themes/color.dart';
 
@@ -145,6 +142,18 @@ class _CadastrarRemedioState extends State<CadastrarRemedio> {
                 borderRadius: BorderRadius.circular(4),
               ),
               child: Stack(children: [
+                Row(
+                  children: const [
+                    Padding(
+                      padding: EdgeInsets.only(top: 2, left: 29),
+                      child: LeftTxt(20, FontWeight.w400, "Horário de inicio"),
+                    ),
+                    Padding(
+                        padding: EdgeInsets.only(top: 1, left: 90),
+                        child: Iconify(Eva.question_mark_circle_fill,
+                            color: infoDefault, size: 35))
+                  ],
+                ),
                 Padding(
                   padding: const EdgeInsets.only(
                       top: 40.0, left: 35.0, bottom: 15.0),
@@ -158,18 +167,6 @@ class _CadastrarRemedioState extends State<CadastrarRemedio> {
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Text("${selectedTime.hour}:${selectedTime.minute}"),
-                ),
-                Row(
-                  children: const [
-                    Padding(
-                      padding: EdgeInsets.only(top: 2, left: 29),
-                      child: LeftTxt(20, FontWeight.w400, "Horário de inicio"),
-                    ),
-                    Padding(
-                        padding: EdgeInsets.only(top: 1, left: 90),
-                        child: Iconify(Eva.question_mark_circle_fill,
-                            color: infoDefault, size: 35))
-                  ],
                 ),
               ]),
             ),
