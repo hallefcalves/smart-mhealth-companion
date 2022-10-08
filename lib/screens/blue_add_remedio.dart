@@ -6,6 +6,8 @@ import 'package:smart_mhealth_companion/components/button_dialog.dart';
 import 'package:smart_mhealth_companion/components/left_text.dart';
 import 'package:smart_mhealth_companion/screens/config_alarme.dart';
 import 'package:smart_mhealth_companion/themes/color.dart';
+import 'package:smart_mhealth_companion/globals.dart' as globals;
+import 'package:smart_mhealth_companion/components/barcodescanner.dart';
 
 class CadastrarRemedio extends StatefulWidget {
   const CadastrarRemedio({Key? key}) : super(key: key);
@@ -42,12 +44,33 @@ const List<int> listHour = <int>[
 const List<int> listMinute = <int>[00, 15, 30, 45];
 
 class _CadastrarRemedioState extends State<CadastrarRemedio> {
+  TextEditingController nomeController = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+
+    nomeController.addListener(_checkIfFieldIsEmpty);
+  }
+
+  @override
+  void dispose() {
+    // Clean up the controller when the widget is removed from the widget tree.
+    // This also removes the _checkIfFieldIsEmpty listener.
+    nomeController.dispose();
+    super.dispose();
+  }
+
+  _checkIfFieldIsEmpty() {
+    if (globals.remedioNome != '') {
+      nomeController.text = globals.remedioNome;
+    }
+  }
+
   int hour = 1;
   int minute = 00;
-
+  BarcodeScanner scan = BarcodeScanner();
   TimeOfDay selectedTime = TimeOfDay.now();
-
-  TextEditingController nomeController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -58,25 +81,24 @@ class _CadastrarRemedioState extends State<CadastrarRemedio> {
       ),
       body: ListView(
         children: <Widget>[
-          Stack(
-            children: const [
-              Padding(
-                  padding: EdgeInsets.only(top: 15, left: 110, right: 71),
-                  child: CircleAvatar(
-                    backgroundImage:
-                        AssetImage('lib/assets/exemplo_remedio.png'),
-                    radius: 80,
-                  )),
-              Padding(
-                  padding: EdgeInsets.only(top: 15, left: 265),
-                  child: Iconify(Eva.question_mark_circle_fill,
-                      color: infoDefault, size: 45)),
-              Padding(
-                  padding: EdgeInsets.only(top: 130, left: 265),
-                  child:
-                      Iconify(Eva.camera_fill, color: infoDefault, size: 45)),
-            ],
-          ),
+          Stack(children: [
+            const Padding(
+                padding: EdgeInsets.only(top: 15, left: 110, right: 71),
+                child: CircleAvatar(
+                  backgroundImage: AssetImage('lib/assets/exemplo_remedio.png'),
+                  radius: 80,
+                )),
+            const Padding(
+                padding: EdgeInsets.only(top: 15, left: 265),
+                child: Iconify(Eva.question_mark_circle_fill,
+                    color: infoDefault, size: 45)),
+            Padding(
+              padding: const EdgeInsets.only(top: 130, left: 265),
+              child: IconButton(
+                  onPressed: () => {scan.scanBarcodeNormal()},
+                  icon: const Iconify(Eva.camera_fill, color: infoDefault, size: 45)),
+            ),
+          ]),
           Padding(
             padding: const EdgeInsets.only(top: 10),
             child: Container(
@@ -105,11 +127,6 @@ class _CadastrarRemedioState extends State<CadastrarRemedio> {
                         fontSize: 18,
                         fontWeight: FontWeight.w400,
                         color: Colors.grey.withOpacity(0.5),
-                      ),
-                      labelText: 'Nome do remédio',
-                      labelStyle: GoogleFonts.roboto(
-                        fontSize: 15,
-                        fontWeight: FontWeight.w400,
                       ),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(3),
@@ -154,19 +171,25 @@ class _CadastrarRemedioState extends State<CadastrarRemedio> {
                             color: infoDefault, size: 35))
                   ],
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(
-                      top: 40.0, left: 35.0, bottom: 15.0),
-                  child: ElevatedButton(
-                    onPressed: () {
-                      _selectTime(context);
-                    },
-                    child: const Text("Selecione a hora"),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Text("${selectedTime.hour}:${selectedTime.minute}"),
+                Row(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(
+                          top: 40.0, left: 35.0, bottom: 15.0),
+                      child: ElevatedButton(
+                        onPressed: () {
+                          _selectTime(context);
+                        },
+                        child: const Text("Selecione a hora"),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 20.0, left: 16.0),
+                      child:
+                          Text("${selectedTime.hour}:${selectedTime.minute}", style: TextStyle(fontSize: 32)),
+                          
+                    ),
+                  ],
                 ),
               ]),
             ),

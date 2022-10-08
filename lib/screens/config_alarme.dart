@@ -46,14 +46,14 @@ Widget configAlarm(nome, hour, minute, TimeOfDay time) {
       uiLocalNotificationDateInterpretation:
           UILocalNotificationDateInterpretation.absoluteTime);
 
-  flutterLocalNotificationsPlugin.periodicallyShow(
+  /*  flutterLocalNotificationsPlugin.periodicallyShow(
     0,
     'Remédio',
     'Bom dia! Hora de tomar o remédio.',
     hour,
     platformChannelSpecifics,
     androidAllowWhileIdle: true,
-  );
+  ); */
 
   return const BlueHome();
 }

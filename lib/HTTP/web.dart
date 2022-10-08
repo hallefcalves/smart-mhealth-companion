@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
 
 Future<String?> fetchData(codigo) async {
@@ -12,9 +13,13 @@ Future<String?> fetchData(codigo) async {
   http.StreamedResponse response = await request.send();
 
   if (response.statusCode == 200) {
-    print(await response.stream.bytesToString());
+    if (kDebugMode) {
+      print(await response.stream.bytesToString());
+    }
   } else {
-    print(response.reasonPhrase);
+    if (kDebugMode) {
+      print(response.reasonPhrase);
+    }
   }
   return null;
 }
@@ -42,9 +47,13 @@ sendData() async {
   http.StreamedResponse response = await request.send();
 
   if (response.statusCode == 200) {
-    print(await response.stream.bytesToString());
+    if (kDebugMode) {
+      print(await response.stream.bytesToString());
+    }
   } else {
-    print(response.reasonPhrase);
+    if (kDebugMode) {
+      print(response.reasonPhrase);
+    }
   }
 }
 
