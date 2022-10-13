@@ -8,7 +8,7 @@ import 'package:smart_mhealth_companion/screens/purple_contacts.dart';
 
 class BtnDialog extends StatelessWidget {
   BtnDialog(this.corCaixa, this.corIcone, this.titulo, this.descricao,
-      this.texto, this.imagem, this.child, this.btntitulo, {super.key});
+      this.texto, this.imagem, this.child, {super.key});
   final Color corCaixa;
   final Color corIcone;
   final String titulo;
@@ -16,7 +16,6 @@ class BtnDialog extends StatelessWidget {
   final String texto;
   final String imagem;
   final Widget child;
-  final String btntitulo;
 
   final routes = {
     '/placeholder': (BuildContext context) => const PlaceholderWidget(),
@@ -25,7 +24,61 @@ class BtnDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ElevatedButton(
+    return AlertDialog(
+          shape: const RoundedRectangleBorder(
+              borderRadius: BorderRadius.all(Radius.circular(9))),
+          backgroundColor: corCaixa,
+          title: Row(
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(top: 5, left: 1),
+                child: IconButton(
+                  icon:
+                      Iconify(Eva.close_circle_fill, color: corIcone, size: 45),
+                  onPressed: () => Navigator.pop(context, 'OK'),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(top: 5),
+                child: CenterTxt(22, FontWeight.w700, titulo),
+              )
+            ],
+          ),
+          content: Stack(
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(top: 18),
+                child: Image.asset(
+                  imagem,
+                ),
+              ),
+              Padding(
+                  padding: const EdgeInsets.only(top: 220),
+                  child: CenterTxt(19, FontWeight.w500, descricao)),
+              Padding(
+                padding: const EdgeInsets.only(top: 270),
+                child: CenterTxt(16, FontWeight.w400, texto),
+              )
+            ],
+          ),
+          actions: <Widget>[
+            TextButton(
+              onPressed: () => Navigator.pop(context, 'OK'),
+              child: Text(
+                'OK',
+                style: GoogleFonts.inter(
+                  fontSize: 22,
+                  fontWeight: FontWeight.w700,
+                ),
+              ),
+            ),
+          ],
+        );
+
+  }
+
+}
+/* return ElevatedButton(
       onPressed: () => showDialog<String>(
         context: context,
         builder: (BuildContext context) => AlertDialog(
@@ -92,7 +145,4 @@ class BtnDialog extends StatelessWidget {
         ),
       ),
       child: Text(btntitulo),
-    );
-
-  }
-}
+    ); */

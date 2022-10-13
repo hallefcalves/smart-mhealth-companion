@@ -1,52 +1,141 @@
-import 'dart:convert';
-
-import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+//import 'package:uuid/uuid.dart';
 
-Future<String?> fetchData(codigo) async {
-  var request = http.Request(
-      'GET',
-      Uri.parse(
-          'http://localhost:1026/v2/entities/urn:ngsi-ld:Shelf:unit001/?options=values&attrs=refStore'));
-  request.body = '''''';
+class Orion {
+  static var url = "20.163.17.242";
 
-  http.StreamedResponse response = await request.send();
+  static Future<String?> obtemDados(codigo) async {
+    var headers = {
+        'Accept': 'application/json',
+        'fiware-service': 'helixiot',
+        'fiware-servicepath': '/'
+      };
+    var request = http.Request(
+        'GET',
+        Uri.parse(
+            'http://$url:1026/v2/entities/?id=$codigo/'));
+    //request.body = '''''';
+    request.headers.addAll(headers);
+    http.StreamedResponse response = await request.send();
 
-  if (response.statusCode == 200) {
-    debugPrint(await response.stream.bytesToString());
-  } else {
-    debugPrint(response.reasonPhrase);
+    if (response.statusCode == 200) {
+      debugPrint("Sucesso obtendo");
+      return response.stream.bytesToString();
+    } else {
+      debugPrint("Erro get: ${response.statusCode}: ${response.reasonPhrase}");
+    }
+    return null;
   }
-  return null;
-}
 
-sendData() async {
-  var headers = {'Content-Type': 'application/json'};
-  var request =
-      http.Request('POST', Uri.parse('http://localhost:1026/v2/op/update'));
-  request.body = json.encode({
-    "id": "urn:ngsi-ld:remedio:001",
-    "type": "remedio",
-    "name": {"type": "string", "value": "Advil"},
-    "imagem": {
-      "type": "string",
-      "value":
-          "https://www.erifarma.com.br/medicamentos/advil-400mg-20-capsulas"
-    },
-    "lote": {"type": "Text", "value": "AR750"},
-    "qtdPilulas": {"type": "Integer", "value": 8},
-    "dataValidade": {"type": "date", "value": "22/07/2029"},
-    "refIdoso": {"type": "Relationship", "value": "urn:ngsi-ld:Idoso:001"}
-  });
-  request.headers.addAll(headers);
+  static Future<String?> obtemDadosQuery(query) async {
+    var headers = {
+        'Accept': 'application/json',
+        'fiware-service': 'helixiot',
+        'fiware-servicepath': '/'
+      };
+    var urlAux = 'http://$url:1026/v2/entities/$query';
+    debugPrint(urlAux);
+    var request = http.Request(
+        'GET',
+        Uri.parse(
+            urlAux));
+    //request.body = '''''';
+    request.headers.addAll(headers);
+    http.StreamedResponse response = await request.send();
 
-  http.StreamedResponse response = await request.send();
-
-  if (response.statusCode == 200) {
-    debugPrint(await response.stream.bytesToString());
-  } else {
-    debugPrint(response.reasonPhrase);
+    if (response.statusCode == 200) {
+      debugPrint("Sucesso obtendo");
+      return response.stream.bytesToString();
+    } else {
+      debugPrint("Erro get: ${response.statusCode}: ${response.reasonPhrase}");
+    }
+    return null;
   }
+
+  /*static createUniqueId() {
+    return const Uuid().v1();
+  }*/
+
+  Future<String?> obtemVersao() async {
+    var request = http.Request('GET', Uri.parse('http://$url:4041/iot/about'));
+    request.body = '''''';
+
+    http.StreamedResponse response = await request.send();
+
+    if (response.statusCode == 200) {
+      response.stream.bytesToString().then((String value) => debugPrint(value));
+    } else {
+      debugPrint(response.reasonPhrase);
+    }
+    return null;
+  }
+
+  static fazUpdate(id, requestBody) async {
+    var headers = {
+      'Content-Type': 'application/json',
+      'fiware-service': 'helixiot',
+      'fiware-servicepath': '/'
+    };
+    var urll = 'http://${Orion.url}:1026/v2/entities/$id/attrs';
+    debugPrint(urll);
+    var request =
+      http.Request('POST', Uri.parse(urll));
+    request.body = requestBody;
+    request.headers.addAll(headers);
+    debugPrint(request.body);
+    http.StreamedResponse response = await request.send();
+
+    if (response.statusCode == 200) {
+      response.stream.bytesToString().then((String value) => debugPrint(value));
+    } else {
+      debugPrint(response.reasonPhrase);
+    }
+  }
+
+  static criaEntidade(requestBody) async {
+    var headers = {
+      'Content-Type': 'application/json',
+      'fiware-service': 'helixiot',
+      'fiware-servicepath': '/'
+    };
+    var urll = 'http://${Orion.url}:1026/v2/entities';
+    debugPrint(urll);
+    var request =
+    http.Request('POST', Uri.parse(urll));
+    request.body = requestBody;
+    request.headers.addAll(headers);
+    debugPrint(request.body);
+    http.StreamedResponse response = await request.send();
+
+    if (response.statusCode == 200) {
+      return response.stream.bytesToString();//.then((String value) => debugPrint(value));
+    } else {
+      debugPrint(response.reasonPhrase);
+    }
+  }
+
+  static deletaEntidade(id, tipo) async {
+    var headers = {
+        'Content-Type': 'application/json',
+        'fiware-service': 'helixiot',
+        'fiware-servicepath': '/'
+      };
+    var urll = 'http://${Orion.url}:1026/v2/entities/?q=id==$id&type=$tipo';
+    debugPrint(urll);
+    var request =
+    http.Request('DELETE', Uri.parse(urll));
+    request.body = '''''';
+
+    http.StreamedResponse response = await request.send();
+
+    if (response.statusCode == 200) {
+      response.stream.bytesToString().then((String value) => debugPrint(value));
+    } else {
+      debugPrint(response.reasonPhrase);
+    }
+  }
+
 }
 
 /* todos> dataCriacao:data

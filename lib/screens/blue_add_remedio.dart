@@ -274,15 +274,31 @@ class _CadastrarRemedioState extends State<CadastrarRemedio> {
           ),
           Padding(
               padding: const EdgeInsets.only(top: 10, left: 35, right: 35),
-              child: BtnDialog(
-                  accentColorLight,
-                  secondaryColor,
-                  'Parabéns!',
-                  'Você cadastrou o remédio ${nomeController.text} com sucesso!',
-                  '',
-                  'lib/assets/exemplo_remedio.png',
-                  configAlarm(nomeController, hour, minute, selectedTime),
-                  'Concluir')),
+              child: ElevatedButton(
+                  onPressed: () => showDialog<String>(
+                    context: context,
+                    builder: (BuildContext context) => BtnDialog(
+                          accentColorLight,
+                          secondaryColor,
+                          'Parabéns!',
+                          'Você cadastrou o remédio ${nomeController.text} com sucesso!',
+                          '',
+                          'lib/assets/exemplo_remedio.png',
+                          configAlarm(nomeController, hour, minute, selectedTime))),
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: secondaryColor,
+                    textStyle: TextStyle(
+                      fontFamily: GoogleFonts.inter().fontFamily,
+                      fontSize: 25,
+                    ),
+                    minimumSize: const Size(170, 65),
+                    maximumSize: const Size(340, 130),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(30),
+                    ),
+                  ),
+                  child: const Text('Concluir'),
+                )),
         ],
       ),
     );
