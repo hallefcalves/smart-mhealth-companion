@@ -17,6 +17,7 @@ GlobalKey navBarGlobalKey = GlobalKey(debugLabel: 'bottomAppBar');
 
 class BottomNavBar extends StatefulWidget {
   const BottomNavBar({Key? key}) : super(key: key);
+  static const routeName = '/';
 
   @override
   State<BottomNavBar> createState() => _BottomNavBarState();
@@ -31,7 +32,6 @@ final routes = {
 int _indiceAtual = 1;
 
 class _BottomNavBarState extends State<BottomNavBar> {
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -52,8 +52,6 @@ class _BottomNavBarState extends State<BottomNavBar> {
           }),
         ],
       ),
-
-
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.shifting,
         showSelectedLabels: false,
@@ -68,14 +66,13 @@ class _BottomNavBarState extends State<BottomNavBar> {
             backgroundColor: accentColor,
           ),
           BottomNavigationBarItem(
-            icon: Iconify(Fa.home,
-                color: primaryColor, size: 70),
+            icon: Iconify(Fa.home, color: primaryColor, size: 70),
             label: 'Menu',
             backgroundColor: primaryColorLight,
           ),
           BottomNavigationBarItem(
-            icon: Iconify(Fluent.pill_24_filled,
-                color: secondaryColor, size: 75),
+            icon:
+                Iconify(Fluent.pill_24_filled, color: secondaryColor, size: 75),
             label: 'Remédios',
             backgroundColor: secondaryColorLight,
           ),

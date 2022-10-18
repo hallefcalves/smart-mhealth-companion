@@ -1,6 +1,8 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-import 'package:smart_mhealth_companion/main.dart';
+import 'package:smart_mhealth_companion/screens/alarm.dart';
 import 'package:smart_mhealth_companion/screens/blue_home.dart';
 import 'package:timezone/data/latest_all.dart' as tz;
 import 'package:timezone/timezone.dart' as tz;
@@ -11,15 +13,25 @@ extension DateTimeExtension on DateTime {
   }
 }
 
-// precisa rodar sempre que cria um alarme, e quando liga o celular
-Widget configAlarm(nome, hour, minute, TimeOfDay time) {
-  DateTime date = DateTime.now();
-  final dateTime = date.applied(time);
+FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
+    FlutterLocalNotificationsPlugin();
+final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
-  tz.initializeTimeZones();
-  var scheduledNotificationDateTime = tz.TZDateTime.from(dateTime, tz.local);
+Future<void> initializeNotifications() async {
+  AndroidInitializationSettings initializationSettingsAndroid =
+      const AndroidInitializationSettings('logo_verde');
 
-  var androidPlatFormChannelSpecifics = const AndroidNotificationDetails(
+  const IOSInitializationSettings initializationSettingsIOS =
+      IOSInitializationSettings();
+
+  final InitializationSettings initializationSettings = InitializationSettings(
+      android: initializationSettingsAndroid, iOS: initializationSettingsIOS);
+  log('NotificationsManager.dart::: notification!!!');
+  flutterLocalNotificationsPlugin.initialize(initializationSettings,
+      onSelectNotification: onSelectNotification);
+}
+
+const androidNotificationDetails = AndroidNotificationDetails(
     'alarm_notif',
     'alarm_notif',
     channelDescription: 'Channel for Alarm notification',
@@ -32,9 +44,49 @@ Widget configAlarm(nome, hour, minute, TimeOfDay time) {
     color: Color.fromARGB(255, 240, 240, 240),
     priority: Priority.high,
   );
+var iOSNotificationDetails = const IOSNotificationDetails();
+var generalNotificationDetails = NotificationDetails(
+      android: androidNotificationDetails, iOS: iOSNotificationDetails);
+
+shootNotification(String title, String body, String payload, context) async {
+  // var flutterLocalNotificationsPlugin =
+  //     HealthCareApp.getNotificationsPlugin(context);
+
+  
+  await flutterLocalNotificationsPlugin
+      .show(002, title, body, generalNotificationDetails, payload: payload);
+}
+
+showNotification(String? payload) {
+  navigatorKey.currentState!
+      .pushNamed('/alarm');
+}
+
+void onSelectNotification(String? payload) async {
+  log('main.dart::: notification arrived!!!');
+
+  if (payload != null) {
+    log('notification payload: $payload');
+  }
+
+  // print('payloadReference: $payload');
+  // BuildContext _context = navigatorKey.currentContext;
+
+  showNotification(payload!);
+}
+
+// precisa rodar sempre que cria um alarme, e quando liga o celular
+Widget configAlarm(nome, hour, minute, TimeOfDay time) {
+  DateTime date = DateTime.now();
+  final dateTime = date.applied(time);
+
+  tz.initializeTimeZones();
+  var scheduledNotificationDateTime = tz.TZDateTime.from(dateTime, tz.local);
+
+  
 
   var platformChannelSpecifics =
-      NotificationDetails(android: androidPlatFormChannelSpecifics);
+      NotificationDetails(android: androidNotificationDetails, iOS: iOSNotificationDetails);
 
   flutterLocalNotificationsPlugin.zonedSchedule(
       0,
@@ -50,7 +102,7 @@ Widget configAlarm(nome, hour, minute, TimeOfDay time) {
     0,
     'Remédio',
     'Bom dia! Hora de tomar o remédio.',
-    hour,
+    hour, 
     platformChannelSpecifics,
     androidAllowWhileIdle: true,
   ); */

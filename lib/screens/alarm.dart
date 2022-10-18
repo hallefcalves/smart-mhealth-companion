@@ -3,7 +3,7 @@ import '../themes/color.dart';
 
 class Alarm extends StatelessWidget with PreferredSizeWidget {
   const Alarm({Key? key}) : super(key: key);
-
+  static const routeName = '/alarm';
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
