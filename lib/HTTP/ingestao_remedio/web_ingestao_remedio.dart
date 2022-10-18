@@ -4,7 +4,33 @@ import 'package:smart_mhealth_companion/HTTP/ingestao_remedio/ingestao_remedio.d
 
 import '../web.dart';
 
-Future<String?> obtemRemedio(id) async {
+/*criaRemedioIngestaoComBase(Remedio dadosRemedioBase, idIdoso, idRemedioNovo) async {
+  RemedioIngestao novoRem = RemedioIngestao();
+  novoRem.id = idRemedioNovo;
+  novoRem.name = dadosRemedioBase.name;
+  novoRem.imagem = dadosRemedioBase.imagem;
+  novoRem.lote = dadosRemedioBase.lote;
+  novoRem.qtdPilulas = dadosRemedioBase.qtdPilulas;
+  novoRem.dataValidade = dadosRemedioBase.dataValidade;
+  novoRem.refIdoso = idIdoso;
+  novoRem.refRemedioCuidador = dadosRemedioBase.id;
+
+  novoRem.dataValidade = dadosRemedioBase.dataValidade;
+
+  return Orion.criaEntidade(RemedioIngestao.obtemJson(novoRem));
+}*/
+
+Future<String?> obtemListaRemediosIngestao(idIdoso) async {
+  return Orion.obtemDadosQuery('?type=remedio&q=refIdoso==$idIdoso');
+}
+
+Future<String?> obtemRemedioIngestao(id) async {
+  return Orion.obtemDados(id);
+}
+
+
+
+/*Future<String?> obtemRemedio(id) async {
   var request = http.Request(
       'GET',
       Uri.parse(
@@ -48,4 +74,4 @@ criaRemedio(dadosRemedio) async {
 
 deletaRemedio(id) async {
   return Orion.deletaEntidade(id, "remedio");
-}
+}*/
