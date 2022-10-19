@@ -4,7 +4,6 @@ import 'package:smart_mhealth_companion/components/bottom_navbar.dart';
 import 'package:smart_mhealth_companion/screens/alarm.dart';
 import 'package:smart_mhealth_companion/screens/config_alarme.dart';
 import 'package:smart_mhealth_companion/screens/green_home.dart';
-import 'package:smart_mhealth_companion/screens/green_intro.dart';
 import 'package:smart_mhealth_companion/screens/placeholder.dart';
 
 final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =

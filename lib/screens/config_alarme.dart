@@ -1,8 +1,5 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-import 'package:smart_mhealth_companion/screens/alarm.dart';
 import 'package:smart_mhealth_companion/screens/blue_home.dart';
 import 'package:timezone/data/latest_all.dart' as tz;
 import 'package:timezone/timezone.dart' as tz;
@@ -26,7 +23,7 @@ Future<void> initializeNotifications() async {
 
   final InitializationSettings initializationSettings = InitializationSettings(
       android: initializationSettingsAndroid, iOS: initializationSettingsIOS);
-  log('NotificationsManager.dart::: notification!!!');
+  print('NotificationsManager.dart::: notification!!!');
   flutterLocalNotificationsPlugin.initialize(initializationSettings,
       onSelectNotification: onSelectNotification);
 }
@@ -63,10 +60,10 @@ showNotification(String? payload) {
 }
 
 void onSelectNotification(String? payload) async {
-  log('main.dart::: notification arrived!!!');
+  print('main.dart::: notification arrived!!!');
 
   if (payload != null) {
-    log('notification payload: $payload');
+    print('notification payload: $payload');
   }
 
   // print('payloadReference: $payload');
