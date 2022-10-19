@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import '../themes/color.dart';
 
 class Alarm extends StatelessWidget with PreferredSizeWidget {
-  var payload;
-
   Alarm({super.key, required this.payload});
+
+  final String payload;
 
   @override
   Widget build(BuildContext context) {
