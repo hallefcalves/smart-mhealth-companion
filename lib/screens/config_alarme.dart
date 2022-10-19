@@ -29,34 +29,32 @@ Future<void> initializeNotifications() async {
 }
 
 const androidNotificationDetails = AndroidNotificationDetails(
-    'alarm_notif',
-    'alarm_notif',
-    channelDescription: 'Channel for Alarm notification',
-    icon: 'logo_verde',
-    playSound: true,
-    fullScreenIntent: true,
-    sound: RawResourceAndroidNotificationSound('oxygen'),
-    largeIcon: DrawableResourceAndroidBitmap('logo_verde'),
-    importance: Importance.max,
-    color: Color.fromARGB(255, 240, 240, 240),
-    priority: Priority.high,
-  );
+  'alarm_notif',
+  'alarm_notif',
+  channelDescription: 'Channel for Alarm notification',
+  icon: 'logo_verde',
+  playSound: true,
+  fullScreenIntent: true,
+  sound: RawResourceAndroidNotificationSound('oxygen'),
+  largeIcon: DrawableResourceAndroidBitmap('logo_verde'),
+  importance: Importance.max,
+  color: Color.fromARGB(255, 240, 240, 240),
+  priority: Priority.high,
+);
 var iOSNotificationDetails = const IOSNotificationDetails();
 var generalNotificationDetails = NotificationDetails(
-      android: androidNotificationDetails, iOS: iOSNotificationDetails);
+    android: androidNotificationDetails, iOS: iOSNotificationDetails);
 
 shootNotification(String title, String body, String payload, context) async {
   // var flutterLocalNotificationsPlugin =
   //     HealthCareApp.getNotificationsPlugin(context);
 
-  
   await flutterLocalNotificationsPlugin
       .show(002, title, body, generalNotificationDetails, payload: payload);
 }
 
 showNotification(String? payload) {
-  navigatorKey.currentState!
-      .pushNamed('/alarm');
+  navigatorKey.currentState!.pushNamed('/alarm', arguments: {payload: payload});
 }
 
 void onSelectNotification(String? payload) async {
@@ -80,10 +78,8 @@ Widget configAlarm(nome, hour, minute, TimeOfDay time) {
   tz.initializeTimeZones();
   var scheduledNotificationDateTime = tz.TZDateTime.from(dateTime, tz.local);
 
-  
-
-  var platformChannelSpecifics =
-      NotificationDetails(android: androidNotificationDetails, iOS: iOSNotificationDetails);
+  var platformChannelSpecifics = NotificationDetails(
+      android: androidNotificationDetails, iOS: iOSNotificationDetails);
 
   flutterLocalNotificationsPlugin.zonedSchedule(
       0,
@@ -93,7 +89,8 @@ Widget configAlarm(nome, hour, minute, TimeOfDay time) {
       platformChannelSpecifics,
       androidAllowWhileIdle: true,
       uiLocalNotificationDateInterpretation:
-          UILocalNotificationDateInterpretation.absoluteTime);
+          UILocalNotificationDateInterpretation.absoluteTime,
+      payload: 'Tomar o remédio, vamos');
 
   /*  flutterLocalNotificationsPlugin.periodicallyShow(
     0,

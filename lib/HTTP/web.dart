@@ -7,14 +7,12 @@ class Orion {
 
   static Future<String?> obtemDados(codigo) async {
     var headers = {
-        'Accept': 'application/json',
-        'fiware-service': 'helixiot',
-        'fiware-servicepath': '/'
-      };
-    var request = http.Request(
-        'GET',
-        Uri.parse(
-            'http://$url:1026/v2/entities/$codigo'));
+      'Accept': 'application/json',
+      'fiware-service': 'helixiot',
+      'fiware-servicepath': '/'
+    };
+    var request =
+        http.Request('GET', Uri.parse('http://$url:1026/v2/entities/$codigo'));
     //request.body = '''''';
     request.headers.addAll(headers);
     http.StreamedResponse response = await request.send();
@@ -30,16 +28,13 @@ class Orion {
 
   static Future<String?> obtemDadosQuery(query) async {
     var headers = {
-        'Accept': 'application/json',
-        'fiware-service': 'helixiot',
-        'fiware-servicepath': '/'
-      };
+      'Accept': 'application/json',
+      'fiware-service': 'helixiot',
+      'fiware-servicepath': '/'
+    };
     var urlAux = 'http://$url:1026/v2/entities/$query';
     debugPrint(urlAux);
-    var request = http.Request(
-        'GET',
-        Uri.parse(
-            urlAux));
+    var request = http.Request('GET', Uri.parse(urlAux));
     //request.body = '''''';
     request.headers.addAll(headers);
     http.StreamedResponse response = await request.send();
@@ -79,8 +74,7 @@ class Orion {
     };
     var urll = 'http://${Orion.url}:1026/v2/entities/$id/attrs';
     debugPrint(urll);
-    var request =
-      http.Request('POST', Uri.parse(urll));
+    var request = http.Request('POST', Uri.parse(urll));
     request.body = requestBody;
     request.headers.addAll(headers);
     debugPrint(request.body);
@@ -101,31 +95,26 @@ class Orion {
     };
     var urll = 'http://${Orion.url}:1026/v2/entities';
     debugPrint(urll);
-    var request =
-    http.Request('POST', Uri.parse(urll));
+    var request = http.Request('POST', Uri.parse(urll));
     request.body = requestBody;
     request.headers.addAll(headers);
     debugPrint(request.body);
     http.StreamedResponse response = await request.send();
 
     if (response.statusCode == 200) {
-      return response.stream.bytesToString();//.then((String value) => debugPrint(value));
+      return response.stream
+          .bytesToString(); //.then((String value) => debugPrint(value));
     } else {
       debugPrint(response.reasonPhrase);
     }
   }
 
   static deletaEntidade(id, tipo) async {
-    var headers = {
-        'Content-Type': 'application/json',
-        'fiware-service': 'helixiot',
-        'fiware-servicepath': '/'
-      };
+    var headers = {'fiware-service': 'helixiot', 'fiware-servicepath': '/'};
     var urll = 'http://${Orion.url}:1026/v2/entities/?q=id==$id&type=$tipo';
     debugPrint(urll);
-    var request =
-    http.Request('DELETE', Uri.parse(urll));
-    request.body = '''''';
+    var request = http.Request('DELETE', Uri.parse(urll));
+    request.headers.addAll(headers);
 
     http.StreamedResponse response = await request.send();
 
@@ -135,7 +124,6 @@ class Orion {
       debugPrint(response.reasonPhrase);
     }
   }
-
 }
 
 /* todos> dataCriacao:data

@@ -1,7 +1,5 @@
 import 'dart:convert';
 
-import '../web.dart';
-
 class RemedioIngestao {
   String? id;
   String? name;

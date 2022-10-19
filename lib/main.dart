@@ -30,7 +30,7 @@ class MyApp extends StatelessWidget {
       initialRoute: '/',
       routes: {
         '/': (BuildContext context) => const BottomNavBar(),
-        '/alarm': (BuildContext context) => const Alarm(),
+        '/alarm': (BuildContext context) => Alarm(payload: '',),
         '/green_home': (BuildContext context) => const GreenHome(),
         '/placeholder': (BuildContext context) => const PlaceholderWidget(),
       },

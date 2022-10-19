@@ -1,7 +1,3 @@
-import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
-import 'package:smart_mhealth_companion/HTTP/ingestao_remedio/ingestao_remedio.dart';
-
 import '../web.dart';
 
 /*criaRemedioIngestaoComBase(Remedio dadosRemedioBase, idIdoso, idRemedioNovo) async {

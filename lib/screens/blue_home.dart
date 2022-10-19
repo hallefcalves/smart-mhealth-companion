@@ -10,7 +10,6 @@ import 'package:smart_mhealth_companion/HTTP/ingestao_remedio/ingestao_remedio.d
 import 'package:smart_mhealth_companion/HTTP/ingestao_remedio/web_ingestao_remedio.dart';
 import 'package:smart_mhealth_companion/components/button_icon.dart';
 import 'package:smart_mhealth_companion/components/center_text.dart';
-import 'package:smart_mhealth_companion/screens/alarm.dart';
 import 'package:smart_mhealth_companion/screens/blue_add_remedio.dart';
 import 'package:smart_mhealth_companion/themes/color.dart';
 import 'package:iconify_flutter/icons/icon_park_outline.dart';
@@ -147,7 +146,7 @@ class BlueHome extends StatelessWidget {
                           builder: (context, AsyncSnapshot<Agenda?> snapshot) { 
                             if(snapshot.hasData){
                               return Padding(
-                            padding: EdgeInsets.only(top: 2),
+                            padding: const EdgeInsets.only(top: 2),
                             child: CenterTxt(20, FontWeight.w400, snapshot.data!.obtemTexto()),
                             );
                             } 

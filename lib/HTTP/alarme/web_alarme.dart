@@ -1,7 +1,4 @@
-
-import '../ingestao_remedio/web_ingestao_remedio.dart';
 import '../web.dart';
-import 'alarme.dart';
 
 Future<String?> obtemAlarme(id) async {
   return Orion.obtemDados(id);

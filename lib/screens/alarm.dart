@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import '../themes/color.dart';
 
 class Alarm extends StatelessWidget with PreferredSizeWidget {
-  const Alarm({Key? key}) : super(key: key);
+  var payload;
+
+  Alarm({super.key, required this.payload});
 
   @override
   Widget build(BuildContext context) {
@@ -51,10 +53,10 @@ class Alarm extends StatelessWidget with PreferredSizeWidget {
                           color: const Color(0xffffffff),
                           alignment: Alignment.center,
                           height: 200.0,
-                          child: const Text(
-                            "Mensagem ao receber alarme",
+                          child: Text(
+                            payload,
                             softWrap: true,
-                            style: TextStyle(
+                            style: const TextStyle(
                                 fontSize: 16.0,
                                 color: Color(0xFF000000),
                                 fontWeight: FontWeight.w400,

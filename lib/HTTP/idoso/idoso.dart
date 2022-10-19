@@ -1,7 +1,5 @@
 import 'dart:convert';
 
-import '../web.dart';
-
 class Idoso {
   String? id;
   String? name;

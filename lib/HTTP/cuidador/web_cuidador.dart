@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 import '../web.dart';
-import 'cuidador.dart';
 
 Future<String?> obtemCuidador(id) async {
   return Orion.obtemDados(id);
