@@ -12,6 +12,10 @@ Future<String?> obtemListaIdosos(idCuidador) async {
   return Orion.obtemDadosQuery('?type=idoso&q=refCuidador==$idCuidador');
 }
 
+Future<String?> obtemIdosoPorCodigo(codigo) async {
+  return Orion.obtemDadosQuery('?type=idoso&q=codigo==$codigo');
+}
+
 alteraIdoso(dadosIdoso) async {
   var headers = {'Content-Type': 'application/json'};
   var request =

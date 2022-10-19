@@ -5,21 +5,7 @@ import '../web.dart';
 import 'cuidador.dart';
 
 Future<String?> obtemCuidador(id) async {
-  var request = http.Request(
-      'GET',
-      Uri.parse(
-          'http://${Orion.url}:1026/v2/entities/$id'));
-  //request.body = '''''';
-
-  http.StreamedResponse response = await request.send();
-
-  if (response.statusCode == 200) {
-    /*response.stream.bytesToString().then((String value) => );*/
-    return response.stream.bytesToString();
-  } else {
-    debugPrint(response.reasonPhrase);
-  }
-  return null;
+  return Orion.obtemDados(id);
 }
 
 Future<String?> obtemCuidadoPorCodigo(codigo) async {

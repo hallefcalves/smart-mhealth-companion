@@ -1,16 +1,22 @@
 import 'dart:convert';
 
+import '../web.dart';
+
 class RemedioIngestao {
   String? id;
   String? name;
   String? imagem;
   String? lote;
-  int? qtdPilulas;
+  String? qtdPilulas;
   String? dataValidade;
   String? refIdoso;
   String? refRemedioCuidador;
 
   static String obtemJson(dado){
+    
+    /*if(dado.id==null || dado.id==""){
+      dado.id = "urn:ngsi-ld:remedio:${Orion.createUniqueId()}";
+    }*/
     return json.encode({
       "id": dado.id,
       "type": "remedio",
@@ -21,16 +27,16 @@ class RemedioIngestao {
         dado.imagem
       },
       "lote": {"type": "Text", "value": dado.lote},
-      "qtdPilulas": {"type": "Integer", "value": dado.qtdPilulas},
+      "qtdPilulas": {"type": "string", "value": dado.qtdPilulas},
       "dataValidade": {"type": "date", "value": dado.dataValidade},
       "refIdoso": {"type": "Relationship", "value": dado.refIdoso},
       "refRemedioCuidador": {"type": "Relationship", "value": dado.refRemedioCuidador}
     });
   }
 
-  static RemedioIngestao obtemRemedio(json){
+  static RemedioIngestao obtemRemedioIngestao(json){
     var dados = jsonDecode(json);
-    if(dados is List){
+    if (dados is List){
       dados = dados[0];
     }
     RemedioIngestao r = RemedioIngestao();
@@ -38,11 +44,30 @@ class RemedioIngestao {
     r.name = dados['name']['value'];
     r.imagem = dados['imagem']['value'];
     r.lote = dados['lote']['value'];
-    r.qtdPilulas = dados['qtdPilulas']['value'];
+    r.qtdPilulas = dados['qtdPilulas']['value'].toString();
     r.dataValidade = dados['dataValidade']['value'];
     r.refIdoso = dados['refIdoso']['value'];
     r.refRemedioCuidador = dados['refRemedioCuidador']['value'];
     return r;
+  }
+
+  static List<RemedioIngestao> obtemRemediosIngestao(json) {
+    var dados = jsonDecode(json);
+    List<RemedioIngestao> remedios = [];
+    
+    for(final dado in dados){
+      RemedioIngestao r = RemedioIngestao();
+      r.id = dado['id'];
+      r.name = dado['name']['value'];
+      r.imagem = dado['imagem']['value'];
+      r.lote = dado['lote']['value'];
+      r.qtdPilulas = dado['qtdPilulas']['value'].toString();
+      r.dataValidade = dado['dataValidade']['value'];
+      r.refIdoso = dado['refIdoso']['value'];
+      r.refRemedioCuidador = dado['refRemedioCuidador']['value'];
+      remedios.add(r);
+    }
+    return remedios;
   }
 
 }

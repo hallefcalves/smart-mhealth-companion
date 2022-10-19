@@ -35,7 +35,7 @@ class BtnDialog extends StatelessWidget {
                 child: IconButton(
                   icon:
                       Iconify(Eva.close_circle_fill, color: corIcone, size: 45),
-                  onPressed: () => Navigator.pop(context, 'OK'),
+                  onPressed: () => acaoCompletaOK(context),
                 ),
               ),
               Padding(
@@ -63,7 +63,7 @@ class BtnDialog extends StatelessWidget {
           ),
           actions: <Widget>[
             TextButton(
-              onPressed: () => Navigator.pop(context, 'OK'),
+              onPressed: () => acaoCompletaOK(context),
               child: Text(
                 'OK',
                 style: GoogleFonts.inter(
@@ -75,6 +75,11 @@ class BtnDialog extends StatelessWidget {
           ],
         );
 
+  }
+
+  acaoCompletaOK(context){
+    Navigator.pop(context, 'OK');
+    Navigator.push(context, MaterialPageRoute(builder: (context) => child));
   }
 
 }

@@ -4,6 +4,7 @@ import 'package:iconify_flutter/iconify_flutter.dart';
 import 'package:iconify_flutter/icons/eva.dart';
 import 'package:smart_mhealth_companion/HTTP/cuidador/cuidador.dart';
 import 'package:smart_mhealth_companion/HTTP/cuidador/web_cuidador.dart';
+import 'package:smart_mhealth_companion/HTTP/idoso/web_idoso.dart';
 import 'package:smart_mhealth_companion/components/button_dialog.dart';
 import 'package:smart_mhealth_companion/components/center_text.dart';
 import 'package:smart_mhealth_companion/components/codigo_verificacao.dart';
@@ -12,6 +13,8 @@ import 'package:smart_mhealth_companion/components/txt_buttom_dialog.dart';
 import 'package:smart_mhealth_companion/screens/purple_contacts.dart';
 import 'package:smart_mhealth_companion/themes/color.dart';
 import 'package:smart_mhealth_companion/util/sessao.dart';
+
+import '../HTTP/idoso/idoso.dart';
 
 
 class PurpleHome extends StatefulWidget {
@@ -93,12 +96,18 @@ class _PurpleHome extends State<PurpleHome> {
 
   tentaConectarCuidado() async{
 
-    String? jsonCuidador = await obtemCuidadoPorCodigo(codigoConexao);
-    debugPrint(jsonCuidador);
-    if(jsonCuidador!=null&&jsonCuidador!="[]"){
-      Cuidador c = Cuidador.obtemCuidador(jsonCuidador);
-      debugPrint(c.name);
+    String? jsonIdoso = await obtemIdosoPorCodigo(codigoConexao);
+    debugPrint(jsonIdoso);
+    if(jsonIdoso!=null&&jsonIdoso!="[]"){
+      Idoso idoso = Idoso.obtemIdoso(jsonIdoso);
+      //debugPrint(idoso.name);
+      debugPrint('idoso encontrado');
       //Sessao.salvarCuidador(c);
+      String? jsonCuidador = await obtemCuidador(idoso.refCuidador);
+      Cuidador c = Cuidador.obtemCuidador(jsonCuidador);
+      debugPrint('cuidador encontrado');
+      Sessao.salvarCuidador(jsonCuidador);
+      Sessao.salvarUserCuidado(jsonIdoso);
       showDialog<String>(
             context: context,
             builder: (BuildContext context) => BtnDialog(accentColor, accentColorMedium, 'Bem-vindo ao \n Despertador Deles', 'Você está conectado a ${c.name}!', '${c.name} agora pode acompanhar seus tratamentos, facilitar sua vida e ajudar a manter sua boa saúde!','lib/assets/anaclara_prf.png', const Contatos())
