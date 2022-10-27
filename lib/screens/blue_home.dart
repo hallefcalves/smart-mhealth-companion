@@ -17,9 +17,19 @@ import 'package:smart_mhealth_companion/util/sessao.dart';
 
 import '../HTTP/idoso/idoso.dart';
 
-
-class BlueHome extends StatelessWidget {
+class BlueHome extends StatefulWidget {
   const BlueHome({Key? key}) : super(key: key);
+  @override
+  // ignore: library_private_types_in_public_api
+  _BlueHome createState() => _BlueHome();
+}
+
+class _BlueHome extends State<BlueHome> {
+  @override
+  void initState() {
+    super.initState();
+  }
+  
 
   @override
   Widget build(BuildContext context) {
@@ -230,28 +240,37 @@ class BlueHome extends StatelessWidget {
   }
 
   Future<List<Alarme>?> carregaRemedios() async {//rename carrega alertas
+  
+    debugPrint("Carregando remds");
     Idoso idoso = await Sessao.obterUserCuidado();
     String? jsonAlr = await obtemListaAlarme(idoso.id);
+    
+    debugPrint("Carregando remds2");
     debugPrint(jsonAlr);
     List<Alarme> remedios = Alarme.obtemAlarmes(jsonAlr);
+    debugPrint("Carregando remds3");
     debugPrint(remedios.length.toString());
     return remedios;
   }
 
   Future<RemedioIngestao?> carregaRemedio(idRem)async{
+    debugPrint("Carregando remds4");
     String? jsonRem = await obtemRemedioIngestao(idRem);
     //debugPrint(jsonRem);
     RemedioIngestao remedio = RemedioIngestao.obtemRemedioIngestao(jsonRem);
+    debugPrint("Carregando remds5");
     //debugPrint(remedios.length.toString());
     return remedio;
   }
 
 
   Future<Agenda?> carregaAgenda(idAgenda)async{
+    debugPrint("Carregando remds6");
     String? jsonRem = await obtemAgenda(idAgenda);
-    //debugPrint(jsonRem);
+    debugPrint(jsonRem);
+    debugPrint("Carregando remds7");
     Agenda remedio = Agenda.obtemAgenda(jsonRem);
-    //debugPrint(remedios.length.toString());
+    debugPrint(remedio.obtemTexto());
     return remedio;
   }
 
