@@ -87,9 +87,8 @@ Widget configAlarm(id, nome, time, freq, payload) {
 
   var platformChannelSpecifics = NotificationDetails(
       android: androidNotificationDetails, iOS: iOSNotificationDetails);
-  if (payload.isEmpty) {
-    payload = 'Tomar Remédio $nome';
-  }
+
+  payload = 'Tomar Remédio $nome';
   if (id == 0) {
     id = const Uuid().v4();
   }
