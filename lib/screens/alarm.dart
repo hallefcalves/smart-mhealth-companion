@@ -23,13 +23,13 @@ class Alarm extends StatelessWidget with PreferredSizeWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: <Widget>[
-                      const Center(
+                      Center(
                         child: Padding(
-                          padding: EdgeInsets.only(top: 24.0),
+                          padding: const EdgeInsets.only(top: 24.0),
                           child: Text(
-                            "Atorvastina 10mg",
+                            payload,
                             softWrap: true,
-                            style: TextStyle(
+                            style: const TextStyle(
                                 fontSize: 64.0,
                                 color: Color(0xFF000000),
                                 fontWeight: FontWeight.w600,

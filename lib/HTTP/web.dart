@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:uuid/uuid.dart';
 //import 'package:uuid/uuid.dart';
 
 class Orion {
@@ -123,6 +124,9 @@ class Orion {
     } else {
       debugPrint(response.reasonPhrase);
     }
+  }
+  static createUniqueId() {
+    return const Uuid().v1();
   }
 }
 

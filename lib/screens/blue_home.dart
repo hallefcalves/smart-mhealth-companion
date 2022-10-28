@@ -248,6 +248,7 @@ class _BlueHome extends State<BlueHome> {
     debugPrint("Carregando remds2");
     debugPrint(jsonAlr);
     List<Alarme> remedios = Alarme.obtemAlarmes(jsonAlr);
+
     debugPrint("Carregando remds3");
     debugPrint(remedios.length.toString());
     return remedios;

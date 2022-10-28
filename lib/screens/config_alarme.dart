@@ -3,6 +3,7 @@ import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:smart_mhealth_companion/screens/blue_home.dart';
 import 'package:timezone/data/latest_all.dart' as tz;
 import 'package:timezone/timezone.dart' as tz;
+import 'package:uuid/uuid.dart';
 
 extension DateTimeExtension on DateTime {
   DateTime applied(TimeOfDay time) {
@@ -23,7 +24,7 @@ Future<void> initializeNotifications() async {
 
   final InitializationSettings initializationSettings = InitializationSettings(
       android: initializationSettingsAndroid, iOS: initializationSettingsIOS);
-  print('NotificationsManager.dart::: notification!!!');
+  debugPrint('NotificationsManager.dart::: notification!!!');
   flutterLocalNotificationsPlugin.initialize(initializationSettings,
       onSelectNotification: onSelectNotification);
 }
@@ -58,10 +59,10 @@ showNotification(String? payload) {
 }
 
 void onSelectNotification(String? payload) async {
-  print('main.dart::: notification arrived!!!');
+  debugPrint('main.dart::: notification arrived!!!');
 
   if (payload != null) {
-    print('notification payload: $payload');
+    debugPrint('notification payload: $payload');
   }
 
   // print('payloadReference: $payload');
@@ -71,35 +72,48 @@ void onSelectNotification(String? payload) async {
 }
 
 // precisa rodar sempre que cria um alarme, e quando liga o celular
-Widget configAlarm(nome, hour, minute, TimeOfDay time) {
+Widget configAlarm(id, nome, time, freq, payload) {
+  TimeOfDay test;
+  if (time is DateTime) {
+    test = TimeOfDay.fromDateTime(time);
+  } else {
+    test = time;
+  }
   DateTime date = DateTime.now();
-  final dateTime = date.applied(time);
+  final dateTime = date.applied(test);
 
   tz.initializeTimeZones();
   var scheduledNotificationDateTime = tz.TZDateTime.from(dateTime, tz.local);
 
   var platformChannelSpecifics = NotificationDetails(
       android: androidNotificationDetails, iOS: iOSNotificationDetails);
-
+  if (payload.isEmpty) {
+    payload = 'Tomar Remédio $nome';
+  }
+  if (id == 0) {
+    id = const Uuid().v4();
+  }
+  freq = RepeatInterval.daily;
   flutterLocalNotificationsPlugin.zonedSchedule(
-      0,
-      'Remédio',
-      'Bom dia! Hora de tomar o remédio.',
+      id.hashCode,
+      nome,
+      'Olá! Hora de tomar o remédio.',
       scheduledNotificationDateTime,
       platformChannelSpecifics,
       androidAllowWhileIdle: true,
       uiLocalNotificationDateInterpretation:
           UILocalNotificationDateInterpretation.absoluteTime,
-      payload: 'Tomar o remédio, vamos');
+      payload: payload);
 
-  flutterLocalNotificationsPlugin.periodicallyShow(
+  /* flutterLocalNotificationsPlugin.periodicallyShow(
     0,
     'Remédio',
     'Bom dia! Hora de tomar o remédio.',
     hour, 
     platformChannelSpecifics,
     androidAllowWhileIdle: true,
-  ); 
+    payload: payload
+  ); */
 
   return const BlueHome();
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:iconify_flutter/iconify_flutter.dart';
 import 'package:iconify_flutter/icons/eva.dart';
@@ -42,6 +43,8 @@ const List<int> listHour = <int>[
   23
 ];
 const List<int> listMinute = <int>[00, 15, 30, 45];
+const id = 0;
+const payload = '';
 
 class _CadastrarRemedioState extends State<CadastrarRemedio> {
   TextEditingController nomeController = TextEditingController();
@@ -96,7 +99,8 @@ class _CadastrarRemedioState extends State<CadastrarRemedio> {
               padding: const EdgeInsets.only(top: 130, left: 265),
               child: IconButton(
                   onPressed: () => {scan.scanBarcodeNormal()},
-                  icon: const Iconify(Eva.camera_fill, color: infoDefault, size: 45)),
+                  icon: const Iconify(Eva.camera_fill,
+                      color: infoDefault, size: 45)),
             ),
           ]),
           Padding(
@@ -185,9 +189,8 @@ class _CadastrarRemedioState extends State<CadastrarRemedio> {
                     ),
                     Padding(
                       padding: const EdgeInsets.only(top: 20.0, left: 16.0),
-                      child:
-                          Text("${selectedTime.hour}:${selectedTime.minute}", style: const TextStyle(fontSize: 32)),
-                          
+                      child: Text("${selectedTime.hour}:${selectedTime.minute}",
+                          style: const TextStyle(fontSize: 32)),
                     ),
                   ],
                 ),
@@ -275,30 +278,31 @@ class _CadastrarRemedioState extends State<CadastrarRemedio> {
           Padding(
               padding: const EdgeInsets.only(top: 10, left: 35, right: 35),
               child: ElevatedButton(
-                  onPressed: () => showDialog<String>(
+                onPressed: () => showDialog<String>(
                     context: context,
                     builder: (BuildContext context) => BtnDialog(
-                          accentColorLight,
-                          secondaryColor,
-                          'Parabéns!',
-                          'Você cadastrou o remédio ${nomeController.text} com sucesso!',
-                          '',
-                          'lib/assets/exemplo_remedio.png',
-                          configAlarm(nomeController, hour, minute, selectedTime))),
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: secondaryColor,
-                    textStyle: TextStyle(
-                      fontFamily: GoogleFonts.inter().fontFamily,
-                      fontSize: 25,
-                    ),
-                    minimumSize: const Size(170, 65),
-                    maximumSize: const Size(340, 130),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(30),
-                    ),
+                        accentColorLight,
+                        secondaryColor,
+                        'Parabéns!',
+                        'Você cadastrou o remédio ${nomeController.text} com sucesso!',
+                        '',
+                        'lib/assets/exemplo_remedio.png',
+                        configAlarm(id, nomeController.text, selectedTime,
+                            RepeatInterval.daily, payload))),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: secondaryColor,
+                  textStyle: TextStyle(
+                    fontFamily: GoogleFonts.inter().fontFamily,
+                    fontSize: 25,
                   ),
-                  child: const Text('Concluir'),
-                )),
+                  minimumSize: const Size(170, 65),
+                  maximumSize: const Size(340, 130),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(30),
+                  ),
+                ),
+                child: const Text('Concluir'),
+              )),
         ],
       ),
     );
@@ -311,6 +315,7 @@ class _CadastrarRemedioState extends State<CadastrarRemedio> {
       initialEntryMode: TimePickerEntryMode.dial,
     );
     if (timeOfDay != null && timeOfDay != selectedTime) {
+
       setState(() {
         selectedTime = timeOfDay;
       });
