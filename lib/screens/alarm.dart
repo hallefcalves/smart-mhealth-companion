@@ -8,6 +8,8 @@ class Alarm extends StatelessWidget with PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
+    final arguments = (ModalRoute.of(context)?.settings.arguments ??
+        <String, dynamic>{}) as Map;
     return MaterialApp(
       home: Builder(
         builder: (context) => MediaQuery(
@@ -27,10 +29,10 @@ class Alarm extends StatelessWidget with PreferredSizeWidget {
                         child: Padding(
                           padding: const EdgeInsets.only(top: 24.0),
                           child: Text(
-                            payload,
+                            arguments["payload"],
                             softWrap: true,
                             style: const TextStyle(
-                                fontSize: 64.0,
+                                fontSize: 48.0,
                                 color: Color(0xFF000000),
                                 fontWeight: FontWeight.w600,
                                 fontFamily: "Inter"),
@@ -54,7 +56,7 @@ class Alarm extends StatelessWidget with PreferredSizeWidget {
                           alignment: Alignment.center,
                           height: 200.0,
                           child: Text(
-                            payload,
+                            arguments["payload"],
                             softWrap: true,
                             style: const TextStyle(
                                 fontSize: 16.0,

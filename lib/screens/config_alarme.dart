@@ -55,7 +55,7 @@ shootNotification(String title, String body, String payload, context) async {
 }
 
 showNotification(String? payload) {
-  navigatorKey.currentState!.pushNamed('/alarm', arguments: {payload: payload});
+  navigatorKey.currentState!.pushNamed('/alarm', arguments: {"payload": payload});
 }
 
 void onSelectNotification(String? payload) async {
