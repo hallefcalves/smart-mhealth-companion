@@ -5,9 +5,9 @@
    <application
         android:name="${applicationName}"
 
-        android:label="smart_mhealth_companion"
+        android:label="Beep"
 
-        android:icon="@mipmap/ic_launcher">
+        android:icon="@mipmap/launcher_icon">
        <!-- android:name="${applicationName}" android:name="io.flutter.app.FlutterApplication" -->
 
        <activity
