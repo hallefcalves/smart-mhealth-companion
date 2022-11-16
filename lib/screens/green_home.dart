@@ -21,7 +21,7 @@ class GreenHome extends StatelessWidget {
                   errorSurface,
                   errorDefault,
                   "Remédio Atrasado",
-                  "Advil às 15h30 ainda não foi tomado"
+                  "Maracutina às 15h30 ainda não foi tomado"
                 ),
               ),
               Padding(
@@ -33,15 +33,7 @@ class GreenHome extends StatelessWidget {
                   "Tome seu Zetia 100mg em 30 minutos"
                 ),
               ),
-              Padding(
-                padding: EdgeInsets.only(top: 22, left: 26, right: 15),
-                child: CustomNotification(
-                  infoSurface,
-                  infoDefault,
-                  "Próximo Alarme em Breve",
-                  "Tome seu Atorvastatina 10mg em 15 minutos"
-                ),
-              ),
+             
               Padding(
                 padding: EdgeInsets.only(top: 22, left: 26, right: 15),
                 child: CustomNotification(

@@ -60,6 +60,7 @@ class _CadastrarRemedioState extends State<CadastrarRemedio> {
   void dispose() {
     // Clean up the controller when the widget is removed from the widget tree.
     // This also removes the _checkIfFieldIsEmpty listener.
+    globals.remedioNome = '';
     nomeController.dispose();
     super.dispose();
   }
@@ -67,6 +68,7 @@ class _CadastrarRemedioState extends State<CadastrarRemedio> {
   _checkIfFieldIsEmpty() {
     if (globals.remedioNome != '') {
       nomeController.text = globals.remedioNome;
+      setState(() {});
     }
   }
 

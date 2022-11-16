@@ -7,7 +7,7 @@ import 'package:smart_mhealth_companion/http/external_api.dart';
 import '../globals.dart' as globals;
 
 class BarcodeScanner {
-  RegExp exp = RegExp('([a-zA-Z]+( [a-zA-Z]+)+)');
+  RegExp exp = RegExp('[A-Za-z0-9]+');
 
   String _result = '';
 
@@ -22,17 +22,17 @@ class BarcodeScanner {
       _result = await verRemedioAPI(barcodeScanRes);
       decoded = JSON.parse(_result);
 
-        debugPrint(barcodeScanRes);
-      
+      debugPrint(barcodeScanRes);
 
-        debugPrint(decoded.description);
+      debugPrint(decoded.description);
     } on PlatformException {
       barcodeScanRes = 'Failed to get platform version.';
     }
 
     if (decoded != null) {
       RegExpMatch? match = exp.firstMatch(decoded["description"].toString());
-      globals.remedioNome = match![0]! ;
+      globals.remedioNome = match![0]!;
+      debugPrint(globals.remedioNome);
     }
   }
 }
