@@ -38,7 +38,7 @@ class Contatos extends StatelessWidget {
                       Padding(
                       padding: EdgeInsets.only(top: 2),
                       child: CircleAvatar(
-                          backgroundImage: AssetImage('lib/assets/anaclara_prf.png'),
+                          backgroundImage: AssetImage('lib/assets/larissa_prf.png'),
                           radius: 130,
                         )
                       ),

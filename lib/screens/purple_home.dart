@@ -142,7 +142,7 @@ class _PurpleHome extends State<PurpleHome> {
               'Bem-vindo ao \n Despertador Deles',
               'Você está conectado a ${c.name}!',
               '${c.name} agora pode acompanhar seus tratamentos, facilitar sua vida e ajudar a manter sua boa saúde!',
-              'lib/assets/anaclara_prf.png',
+              'lib/assets/larissa_prf.png',
               const Contatos()));
     } else {
       showDialog<String>(
